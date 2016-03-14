@@ -7,19 +7,39 @@
 //
 
 import UIKit
-
+import Firebase
 class ViewController: UIViewController {
 
+    // Create a reference to a Firebase location
+    var myRootRef = Firebase(url:"https://sizzling-heat-3471.firebaseIO.com")
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    @IBOutlet weak var arrayViewer: UITextView!
+    
+    @IBAction func updateButton(sender: AnyObject) {
+        // Do any additional setup after loading the view, typically from a nib.
+        myRootRef.observeEventType(.Value, withBlock: {
+            snapshot in
+            print("\(snapshot.key) -> \(snapshot.value)")
+            self.arrayViewer.text=("\(snapshot.key) -> \(snapshot.value)")
+        })
+        
+    }
 
+
+    @IBAction func editArea(sender: AnyObject) {
+    }
 
 }
 
