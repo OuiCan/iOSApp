@@ -20,6 +20,7 @@
 		0410D8951C82A94800C4E3BD /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0410D8941C82A94800C4E3BD /* libc++.tbd */; };
 		0410D8971C82A97800C4E3BD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0410D8961C82A97800C4E3BD /* CFNetwork.framework */; };
 		0410D8991C82A99300C4E3BD /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0410D8981C82A99300C4E3BD /* libicucore.tbd */; };
+		190D07521C971E2200240F17 /* barcodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190D07511C971E2200240F17 /* barcodeScanner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		0410D8941C82A94800C4E3BD /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		0410D8961C82A97800C4E3BD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		0410D8981C82A99300C4E3BD /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		190D07511C971E2200240F17 /* barcodeScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = barcodeScanner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 				0410D8671C82A8FC00C4E3BD /* Assets.xcassets */,
 				0410D8691C82A8FC00C4E3BD /* LaunchScreen.storyboard */,
 				0410D86C1C82A8FC00C4E3BD /* Info.plist */,
+				190D07511C971E2200240F17 /* barcodeScanner.swift */,
 			);
 			path = IOSTestCLOUD;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				TargetAttributes = {
 					0410D85C1C82A8FC00C4E3BD = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = Z8HC6H2EVG;
 					};
 					0410D8701C82A8FC00C4E3BD = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -282,6 +286,7 @@
 			files = (
 				0410D8631C82A8FC00C4E3BD /* ViewController.swift in Sources */,
 				0410D8611C82A8FC00C4E3BD /* AppDelegate.swift in Sources */,
+				190D07521C971E2200240F17 /* barcodeScanner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +428,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/IOSTestCLOUD",
@@ -431,6 +438,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = santo.IOSTestCLOUD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -438,6 +446,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/IOSTestCLOUD",
@@ -446,6 +456,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = santo.IOSTestCLOUD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -516,6 +527,7 @@
 				0410D8871C82A8FC00C4E3BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0410D8881C82A8FC00C4E3BD /* Build configuration list for PBXNativeTarget "IOSTestCLOUDTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +536,7 @@
 				0410D88A1C82A8FC00C4E3BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0410D88B1C82A8FC00C4E3BD /* Build configuration list for PBXNativeTarget "IOSTestCLOUDUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +545,7 @@
 				0410D88D1C82A8FC00C4E3BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

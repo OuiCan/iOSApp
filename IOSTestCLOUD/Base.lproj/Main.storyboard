@@ -17,40 +17,72 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="N/A" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MBU-P0-Tv8">
-                                <rect key="frame" x="137" y="197" width="151" height="53"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" text="N/A" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="MBU-P0-Tv8">
+                                <rect key="frame" x="150" y="57" width="301" height="141"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7H1-Uv-Zg7">
-                                <rect key="frame" x="268" y="329" width="51" height="30"/>
-                                <state key="normal" title="Update"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="je5-8d-Yt5">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tsy-33-aBv">
+                                <rect key="frame" x="257" y="211" width="92" height="30"/>
+                                <state key="normal" title="Firebase Test"/>
                                 <connections>
-                                    <action selector="addButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RL0-DW-ggE"/>
-                                    <action selector="dowloadArray:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kJU-ra-UTf"/>
-                                    <action selector="updateButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b1E-GC-dCD"/>
+                                    <action selector="updateButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bCp-k6-U0c"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6bU-a4-aRt">
-                                <rect key="frame" x="378" y="188" width="97" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="myb-Cq-loQ">
+                                <rect key="frame" x="257" y="322" width="87" height="30"/>
+                                <state key="normal" title="Camera Test"/>
                                 <connections>
-                                    <action selector="editArea:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="7TU-A0-CNC"/>
+                                    <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7j4-3U-Wpn"/>
                                 </connections>
-                            </textField>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o82-P5-hiV">
+                                <rect key="frame" x="225" y="412" width="151" height="30"/>
+                                <state key="normal" title="Barcode Scanner Test"/>
+                                <connections>
+                                    <segue destination="I6J-py-dPp" kind="show" id="Gvp-vH-IIT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MBU-P0-Tv8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="N6J-ks-8Ld"/>
+                            <constraint firstItem="tsy-33-aBv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="R3L-Ad-K6l"/>
+                            <constraint firstItem="je5-8d-Yt5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Tfw-fs-w8e"/>
+                            <constraint firstItem="o82-P5-hiV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VNI-bo-GJJ"/>
+                            <constraint firstItem="myb-Cq-loQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eDs-xT-GE6"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="arrayViewer" destination="MBU-P0-Tv8" id="pTV-lt-alx"/>
-                        <outlet property="updateButton" destination="7H1-Uv-Zg7" id="go2-b4-Epp"/>
+                        <outlet property="imageView" destination="je5-8d-Yt5" id="4K7-Xm-9fb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="215" y="418"/>
+        </scene>
+        <!--Scanner View Controller-->
+        <scene sceneID="vtk-go-Cz2">
+            <objects>
+                <viewController id="I6J-py-dPp" customClass="ScannerViewController" customModule="IOSTestCLOUD" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rF1-Vu-s3U"/>
+                        <viewControllerLayoutGuide type="bottom" id="CVd-LG-468"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qKp-vI-pBP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6X5-De-xBq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="929" y="418"/>
         </scene>
     </scenes>
 </document>

@@ -8,15 +8,12 @@
 
 import UIKit
 import Firebase
-class ViewController: UIViewController {
 
-    // Create a reference to a Firebase location
-    var myRootRef = Firebase(url:"https://sizzling-heat-3471.firebaseIO.com")
-    
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
-
 
         
     }
@@ -25,6 +22,13 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    /*************** DROP THE (FIRE) BASE ***********/
+    
+    // Create a reference to a Firebase location
+    var myRootRef = Firebase(url:"https://radiant-heat-681.firebaseio.com/")
+    
+    
     @IBOutlet weak var arrayViewer: UITextView!
     
     @IBAction func updateButton(sender: AnyObject) {
@@ -36,10 +40,33 @@ class ViewController: UIViewController {
         })
         
     }
-
-
-    @IBAction func editArea(sender: AnyObject) {
+    
+    /*************** TAKE PHOTO TEST HERE **********/
+    
+    @IBOutlet var imageView: UIImageView!
+    var imagePicker: UIImagePickerController!
+    
+    @IBAction func takePhoto(sender: AnyObject) {
+        imagePicker =  UIImagePickerController()
+        
+        /*Because class inherits from UINavigationControllerDelegate, UIImagePickerControllerDelegate,
+          we can say imagePicker.delegate = self 
+        */
+        
+        imagePicker.delegate = self
+        imagePicker.sourceType = .Camera
+        
+        presentViewController(imagePicker, animated: true, completion: nil)
+        
     }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        imagePicker.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 
+    
+    
 }
 
