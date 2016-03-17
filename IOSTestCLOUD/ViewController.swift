@@ -73,7 +73,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let scannerVC = segue.destinationViewController as! ScannerViewController
-        scannerVC.barcodeDelegate = self
+        scannerVC.barcodeDelegate = self 
     }
     
     func foundBarcode(code: String) {
