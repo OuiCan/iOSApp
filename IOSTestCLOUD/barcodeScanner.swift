@@ -14,6 +14,8 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     
+    var barcodeDelegate: reportScannedBarcodeDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -94,6 +96,9 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     func foundCode(code: String) {
         print(code)
+        if (barcodeDelegate != nil) {
+            barcodeDelegate?.foundBarcode(code)
+        }
     }
     
     override func prefersStatusBarHidden() -> Bool {

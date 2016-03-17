@@ -21,6 +21,7 @@
 		0410D8971C82A97800C4E3BD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0410D8961C82A97800C4E3BD /* CFNetwork.framework */; };
 		0410D8991C82A99300C4E3BD /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0410D8981C82A99300C4E3BD /* libicucore.tbd */; };
 		190D07521C971E2200240F17 /* barcodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190D07511C971E2200240F17 /* barcodeScanner.swift */; };
+		947361341C9A342D008A0A68 /* reportScannedBarcodeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947361331C9A342D008A0A68 /* reportScannedBarcodeDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		0410D8961C82A97800C4E3BD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		0410D8981C82A99300C4E3BD /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		190D07511C971E2200240F17 /* barcodeScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = barcodeScanner.swift; sourceTree = "<group>"; };
+		947361331C9A342D008A0A68 /* reportScannedBarcodeDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = reportScannedBarcodeDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				0410D8691C82A8FC00C4E3BD /* LaunchScreen.storyboard */,
 				0410D86C1C82A8FC00C4E3BD /* Info.plist */,
 				190D07511C971E2200240F17 /* barcodeScanner.swift */,
+				947361331C9A342D008A0A68 /* reportScannedBarcodeDelegate.swift */,
 			);
 			path = IOSTestCLOUD;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0410D8631C82A8FC00C4E3BD /* ViewController.swift in Sources */,
+				947361341C9A342D008A0A68 /* reportScannedBarcodeDelegate.swift in Sources */,
 				0410D8611C82A8FC00C4E3BD /* AppDelegate.swift in Sources */,
 				190D07521C971E2200240F17 /* barcodeScanner.swift in Sources */,
 			);

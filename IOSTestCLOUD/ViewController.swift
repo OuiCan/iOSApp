@@ -9,7 +9,9 @@
 import UIKit
 import Firebase
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate,
+    reportScannedBarcodeDelegate
+{
 
     override func viewDidLoad() {
         
@@ -65,7 +67,19 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
     }
     
-
+    /************* Barcode Test *************/
+    
+    @IBOutlet weak var scannedBarcodeLabel: UILabel!
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let scannerVC = segue.destinationViewController as! ScannerViewController
+        scannerVC.barcodeDelegate = self
+    }
+    
+    func foundBarcode(code: String) {
+        /* Write to the label the code found */
+        scannedBarcodeLabel.text = code
+    }
     
     
 }

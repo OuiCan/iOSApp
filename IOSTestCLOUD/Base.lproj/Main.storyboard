@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ysE-K5-vq2">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -33,18 +33,24 @@
                                     <action selector="updateButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bCp-k6-U0c"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o82-P5-hiV">
+                                <rect key="frame" x="225" y="459" width="151" height="30"/>
+                                <state key="normal" title="Barcode Scanner Test"/>
+                                <connections>
+                                    <segue destination="I6J-py-dPp" kind="show" identifier="barcodeScannerSegue" id="gAJ-nb-qez"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAI-z2-Scg">
+                                <rect key="frame" x="192" y="371" width="222" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="myb-Cq-loQ">
-                                <rect key="frame" x="257" y="322" width="87" height="30"/>
+                                <rect key="frame" x="257" y="333" width="87" height="30"/>
                                 <state key="normal" title="Camera Test"/>
                                 <connections>
                                     <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7j4-3U-Wpn"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o82-P5-hiV">
-                                <rect key="frame" x="225" y="412" width="151" height="30"/>
-                                <state key="normal" title="Barcode Scanner Test"/>
-                                <connections>
-                                    <segue destination="I6J-py-dPp" kind="show" id="Gvp-vH-IIT"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -57,14 +63,16 @@
                             <constraint firstItem="myb-Cq-loQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eDs-xT-GE6"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="nJ6-RP-NGb"/>
                     <connections>
                         <outlet property="arrayViewer" destination="MBU-P0-Tv8" id="pTV-lt-alx"/>
                         <outlet property="imageView" destination="je5-8d-Yt5" id="4K7-Xm-9fb"/>
+                        <outlet property="scannedBarcodeLabel" destination="gAI-z2-Scg" id="Bzf-xl-ng2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="215" y="418"/>
+            <point key="canvasLocation" x="1027" y="418"/>
         </scene>
         <!--Scanner View Controller-->
         <scene sceneID="vtk-go-Cz2">
@@ -82,7 +90,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6X5-De-xBq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="929" y="418"/>
+            <point key="canvasLocation" x="1741" y="418"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cMj-iB-05e">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ysE-K5-vq2" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JXL-t2-zFO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="JZi-oE-NF5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HUb-ws-Jod" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="215" y="418"/>
         </scene>
     </scenes>
 </document>
