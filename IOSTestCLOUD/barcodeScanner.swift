@@ -14,7 +14,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     
-    var barcodeDelegate: reportScannedBarcodeDelegate?
+    var barcodeDelegate: reportScannedBarcodeDelegate? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,14 +91,23 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             foundCode(readableObject.stringValue);
         }
         
-        dismissViewControllerAnimated(true, completion: nil)
+        //dismissViewControllerAnimated(true, completion: nil)
+        //self.dismissViewControllerAnimated(true, completion: nil);
+        /*
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewControllerWithIdentifier("AddGroceryItems") as! ViewController
+        self.presentViewController(vc, animated: true, completion: nil)
+        */
+
     }
     
     func foundCode(code: String) {
         print(code)
         if (barcodeDelegate != nil) {
-            barcodeDelegate?.foundBarcode(code)
+            barcodeDelegate!.foundBarcode(code)
+            //self.navigationController?.popViewControllerAnimated(true)
         }
+        
     }
     
     override func prefersStatusBarHidden() -> Bool {

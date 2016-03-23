@@ -25,7 +25,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         // Dispose of any resources that can be recreated.
     }
     
-    /*************** DROP THE (FIRE) BASE ***********/
+    /*************** DROP THE (FIRE) BASE **********
     
     // Create a reference to a Firebase location
     var myRootRef = Firebase(url:"https://radiant-heat-681.firebaseio.com/")
@@ -66,14 +66,19 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
     }
-    
+*/
+
     /************* Barcode Test *************/
+    
     
     @IBOutlet weak var scannedBarcodeLabel: UILabel!
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let scannerVC = segue.destinationViewController as! ScannerViewController
-        scannerVC.barcodeDelegate = self 
+
+        if (segue.identifier == "barcodeScannerSegue") {
+            let scannerVC = segue.destinationViewController as! ScannerViewController
+            scannerVC.barcodeDelegate = self
+        }
     }
     
     func foundBarcode(code: String) {
