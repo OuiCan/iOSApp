@@ -57,7 +57,6 @@
         <!--Dashboard-->
         <scene sceneID="9uX-lF-Vj2">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Dk1-YA-fcW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="aOB-Ir-oxN" customClass="MainMenuViewController" customModule="IOSTestCLOUD" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VCt-lK-uFg"/>
@@ -85,13 +84,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Dashboard" id="hTb-KY-YrP"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dk1-YA-fcW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2355" y="418"/>
         </scene>
         <!--Add Grocery Items-->
         <scene sceneID="CKQ-IR-OP1">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8a4-KU-q5F" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="AddGroceryItems" id="n4p-K4-8QP" customClass="ViewController" customModule="IOSTestCLOUD" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fk1-8V-UFO"/>
@@ -160,6 +159,7 @@
                         <outlet property="scannedBarcodeLabel" destination="gAI-z2-Scg" id="eip-Qh-nnf"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8a4-KU-q5F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3544" y="418"/>
         </scene>

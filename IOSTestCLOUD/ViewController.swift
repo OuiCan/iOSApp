@@ -10,14 +10,14 @@ import UIKit
 import Firebase
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate,
-    reportScannedBarcodeDelegate
-{
+    reportScannedBarcodeDelegate {
+    
+    var json: Array<String>!
+
 
     override func viewDidLoad() {
         
         super.viewDidLoad()
-
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,33 +42,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         })
         
     }
-    
-    /*************** TAKE PHOTO TEST HERE **********/
-    
-    @IBOutlet var imageView: UIImageView!
-    var imagePicker: UIImagePickerController!
-    
-    @IBAction func takePhoto(sender: AnyObject) {
-        imagePicker =  UIImagePickerController()
-        
-        /*Because class inherits from UINavigationControllerDelegate, UIImagePickerControllerDelegate,
-          we can say imagePicker.delegate = self 
-        */
-        
-        imagePicker.delegate = self
-        imagePicker.sourceType = .Camera
-        
-        presentViewController(imagePicker, animated: true, completion: nil)
-        
-    }
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        imagePicker.dismissViewControllerAnimated(true, completion: nil)
-    }
-*/
 
-    /************* Barcode Test *************/
+*/
     
     
     @IBOutlet weak var scannedBarcodeLabel: UILabel!
@@ -84,7 +59,48 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     func foundBarcode(code: String) {
         /* Write to the label the code found */
         scannedBarcodeLabel.text = code
+        jsonParser(code)
     }
+    
+    /*
+    func lookupBarcode(code: String) {
+        let request = NSMutableURLRequest(URL: NSURL(string: "https://api.upcitemdb.com/prod/trial/lookup?upc=" + code)!)
+        let session = NSURLSession.sharedSession()
+        
+        request.HTTPMethod = "GET"
+        
+        let task = session.dataTaskWithRequest(request, completionHandler: {data, response, err -> Void in
+            
+        })
+        task.resume()
+    }*/
+    
+    
+    enum JSONError: String, ErrorType {
+        case NoData = "ERROR: no data"
+        case ConversionFailed = "ERROR: conversion from JSON failed"
+    }
+    
+    func jsonParser(code: String) {
+        let urlPath = "https://api.upcitemdb.com/prod/trial/lookup?upc=" + code
+        guard let endpoint = NSURL(string: urlPath) else { print("Error creating endpoint");return }
+        let request = NSMutableURLRequest(URL:endpoint)
+        NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
+            do {
+                guard let dat = data else { throw JSONError.NoData }
+                guard let json = try NSJSONSerialization.JSONObjectWithData(dat, options: []) as? NSDictionary else { throw JSONError.ConversionFailed }
+                let items = json.objectForKey("items")!
+                let title = items[0].objectForKey("title")
+                print(title!)
+            } catch let error as JSONError {
+                print(error.rawValue)
+            } catch {
+                print(error)
+            }
+            }.resume()
+    }
+
+    
     
     
 }
