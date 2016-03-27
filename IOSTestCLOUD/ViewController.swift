@@ -9,15 +9,21 @@
 import UIKit
 import Firebase
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate,
+class ViewController: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate,
     reportScannedBarcodeDelegate {
     
     var json: Array<String>!
+    var inventoryArray: [String] = []
 
 
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        //Pull Inventory from FireBase Here
+        
+        tableView.reloadData()
+        self.refreshControl?.addTarget(self, action: "refreshChannels:", forControlEvents: UIControlEvents.ValueChanged)
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,25 +31,29 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         // Dispose of any resources that can be recreated.
     }
     
-    /*************** DROP THE (FIRE) BASE **********
     
-    // Create a reference to a Firebase location
-    var myRootRef = Firebase(url:"https://radiant-heat-681.firebaseio.com/")
+    /**************** Populate table ***********/
     
-    
-    @IBOutlet weak var arrayViewer: UITextView!
-    
-    @IBAction func updateButton(sender: AnyObject) {
-        // Do any additional setup after loading the view, typically from a nib.
-        myRootRef.observeEventType(.Value, withBlock: {
-            snapshot in
-            print("\(snapshot.key) -> \(snapshot.value)")
-            self.arrayViewer.text=("\(snapshot.key) -> \(snapshot.value)")
-        })
-        
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell!
+        cell.textLabel?.text = inventoryArray[indexPath.row]
+        return cell
     }
-
-*/
+    
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return inventoryArray.count
+    }
+    
+    func refreshInventory(refreshControl: UIRefreshControl) {
+        //Pull new channel list from parse
+        print("Pulling new channel list")
+        //ParseInterface.pullParseChannel(self)
+        
+        print(inventoryArray)
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
     
     
     @IBOutlet weak var scannedBarcodeLabel: UILabel!
@@ -62,19 +72,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         jsonParser(code)
     }
     
-    /*
-    func lookupBarcode(code: String) {
-        let request = NSMutableURLRequest(URL: NSURL(string: "https://api.upcitemdb.com/prod/trial/lookup?upc=" + code)!)
-        let session = NSURLSession.sharedSession()
-        
-        request.HTTPMethod = "GET"
-        
-        let task = session.dataTaskWithRequest(request, completionHandler: {data, response, err -> Void in
-            
-        })
-        task.resume()
-    }*/
-    
+    /**************** Parse JSON ******************/
     
     enum JSONError: String, ErrorType {
         case NoData = "ERROR: no data"
@@ -83,15 +81,36 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     func jsonParser(code: String) {
         let urlPath = "https://api.upcitemdb.com/prod/trial/lookup?upc=" + code
-        guard let endpoint = NSURL(string: urlPath) else { print("Error creating endpoint");return }
+        guard let endpoint = NSURL(string: urlPath) else {
+            print("Error creating endpoint");
+            return
+        }
         let request = NSMutableURLRequest(URL:endpoint)
         NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
             do {
                 guard let dat = data else { throw JSONError.NoData }
                 guard let json = try NSJSONSerialization.JSONObjectWithData(dat, options: []) as? NSDictionary else { throw JSONError.ConversionFailed }
-                let items = json.objectForKey("items")!
-                let title = items[0].objectForKey("title")
-                print(title!)
+                
+                let total = json.objectForKey("total")
+                if (total != nil && (total as! Int) > 0) {
+                    print("found total")
+                    let items = json.objectForKey("items")
+                    print(items)
+                    if (items != nil) {
+                        print("found items")
+                        let title = items![0].objectForKey("title")
+                        if (title != nil) {
+                            print(title!)
+                        } else {
+                            // UPC has no title
+                            print("No title found for given UPC %s", code)
+                        }
+                    }
+                } else {
+                    // Nothing was found
+                    print("Nothing was found")
+                }
+                
             } catch let error as JSONError {
                 print(error.rawValue)
             } catch {
@@ -100,6 +119,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             }.resume()
     }
 
+    
     
     
     

@@ -29,6 +29,8 @@
 		19CC35DB1CA2082A00E7CA9C /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 19CC35DA1CA2082A00E7CA9C /* libstdc++.tbd */; };
 		19CC35DD1CA2084A00E7CA9C /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19CC35DC1CA2084A00E7CA9C /* CoreImage.framework */; };
 		19CC35DF1CA2097000E7CA9C /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 19CC35DE1CA2097000E7CA9C /* tessdata */; };
+		19CFA21B1CA84BFA00DFECAA /* FirebaseInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CFA21A1CA84BFA00DFECAA /* FirebaseInterface.swift */; };
+		19CFA21F1CA84C5000DFECAA /* BarcodeLookupInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CFA21E1CA84C5000DFECAA /* BarcodeLookupInterface.swift */; };
 		947361341C9A342D008A0A68 /* reportScannedBarcodeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947361331C9A342D008A0A68 /* reportScannedBarcodeDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +81,8 @@
 		19CC35DC1CA2084A00E7CA9C /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		19CC35DE1CA2097000E7CA9C /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		19CC35E61CA20C0B00E7CA9C /* IOSTestCLOUD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IOSTestCLOUD-Bridging-Header.h"; sourceTree = "<group>"; };
+		19CFA21A1CA84BFA00DFECAA /* FirebaseInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseInterface.swift; sourceTree = "<group>"; };
+		19CFA21E1CA84C5000DFECAA /* BarcodeLookupInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BarcodeLookupInterface.swift; path = ../BarcodeLookupInterface.swift; sourceTree = "<group>"; };
 		947361331C9A342D008A0A68 /* reportScannedBarcodeDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = reportScannedBarcodeDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,16 +153,18 @@
 		0410D85F1C82A8FC00C4E3BD /* IOSTestCLOUD */ = {
 			isa = PBXGroup;
 			children = (
-				19CC35BE1C9E107A00E7CA9C /* LoginViewController.swift */,
-				0410D8601C82A8FC00C4E3BD /* AppDelegate.swift */,
-				0410D8621C82A8FC00C4E3BD /* ViewController.swift */,
-				19CC35BC1C9E105500E7CA9C /* MainMenuViewController.swift */,
-				0410D8641C82A8FC00C4E3BD /* Main.storyboard */,
-				19CC35C51CA108CA00E7CA9C /* TesseractViewController.swift */,
 				0410D86C1C82A8FC00C4E3BD /* Info.plist */,
+				0410D8601C82A8FC00C4E3BD /* AppDelegate.swift */,
+				0410D8641C82A8FC00C4E3BD /* Main.storyboard */,
+				19CFA21E1CA84C5000DFECAA /* BarcodeLookupInterface.swift */,
+				19CFA21A1CA84BFA00DFECAA /* FirebaseInterface.swift */,
+				19CC35BE1C9E107A00E7CA9C /* LoginViewController.swift */,
+				19CC35BC1C9E105500E7CA9C /* MainMenuViewController.swift */,
+				0410D8621C82A8FC00C4E3BD /* ViewController.swift */,
 				190D07511C971E2200240F17 /* barcodeScanner.swift */,
-				947361331C9A342D008A0A68 /* reportScannedBarcodeDelegate.swift */,
+				19CC35C51CA108CA00E7CA9C /* TesseractViewController.swift */,
 				19CC35E61CA20C0B00E7CA9C /* IOSTestCLOUD-Bridging-Header.h */,
+				947361331C9A342D008A0A68 /* reportScannedBarcodeDelegate.swift */,
 				19CC35D71CA2045100E7CA9C /* Graphics */,
 				0410D8671C82A8FC00C4E3BD /* Assets.xcassets */,
 			);
@@ -330,7 +336,9 @@
 				19CC35BD1C9E105500E7CA9C /* MainMenuViewController.swift in Sources */,
 				0410D8631C82A8FC00C4E3BD /* ViewController.swift in Sources */,
 				947361341C9A342D008A0A68 /* reportScannedBarcodeDelegate.swift in Sources */,
+				19CFA21B1CA84BFA00DFECAA /* FirebaseInterface.swift in Sources */,
 				19CC35C61CA108CA00E7CA9C /* TesseractViewController.swift in Sources */,
+				19CFA21F1CA84C5000DFECAA /* BarcodeLookupInterface.swift in Sources */,
 				0410D8611C82A8FC00C4E3BD /* AppDelegate.swift in Sources */,
 				190D07521C971E2200240F17 /* barcodeScanner.swift in Sources */,
 			);
