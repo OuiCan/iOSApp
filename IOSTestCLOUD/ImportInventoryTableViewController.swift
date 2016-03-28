@@ -12,20 +12,21 @@ import Firebase
 class ImportInventoryTableViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDataSource, UITableViewDelegate, reportScannedBarcodeDelegate {
     
     var json: Array<String>!
-    
-    //Sample Inventory --- Need to pull from FireBase
-    var inventoryTitleArray: [String] = ["Clif Bars", "Barilla Pasta"]
-    var inventoryUPCArray: [String] = ["088896898", "867670869"]
+    var inventory = [InventoryItem]()
+    var user: User!
     
     @IBOutlet weak var InventoryList: UITableView!
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        //Pull Existing Inventory from FireBase Here
         
+        //Setup UITableView
         InventoryList.delegate = self
         InventoryList.dataSource = self
+        
+        //Pull Existing Inventory from FireBase Here
+        retrieveInventory()
         
         InventoryList.reloadData()
         
@@ -37,20 +38,64 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
     }
     
     
+    /*************** Firebase ******************/
+     
+    //User Specific --- OSKALLI
+    var userRef = Firebase(url:"https://radiant-heat-681.firebaseio.com/OuiCan%20Users/oskalli")
+    
+    
+    func retrieveInventory(){
+        
+        let inventoryRef = self.userRef.childByAppendingPath("inventory")
+        inventoryRef.observeEventType(.Value, withBlock: { snapshot in
+
+            var newInventoryItems = [InventoryItem]()
+            
+            for item in snapshot.children {
+        
+                let inventoryItem = InventoryItem(snapshot: item as! FDataSnapshot)
+                newInventoryItems.append(inventoryItem)
+            }
+            self.inventory = newInventoryItems
+            //print(newInventoryItems)
+            self.InventoryList.reloadData()
+        })
+       
+    }
+    
+    func saveItemToInventory(title: String ,code: String){
+        
+        let inventoryItem = InventoryItem(title: title, UPC: code, expired: false, key: "")
+                
+        let inventoryRef = userRef.childByAppendingPath("inventory")
+
+        let inventoryItemRef = inventoryRef.childByAppendingPath(code)
+                
+        inventoryItemRef.setValue(inventoryItem.toAnyObject())
+    }
+
+    
+    
     /**************** Populate table ***********/
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell!
-        cell.textLabel?.text = inventoryTitleArray[indexPath.row]
-        cell.detailTextLabel?.text = inventoryUPCArray[indexPath.row]
+
+        let inventoryItem = inventory[indexPath.row]
+        cell.textLabel?.text = inventoryItem.title
+        cell.detailTextLabel?.text = inventoryItem.UPC
+        
         return cell
     }
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return inventoryTitleArray.count
+        return inventory.count
     }
     
+    
+    
+    /**************** Scan Barcode ***********/
     
     @IBOutlet weak var scannedBarcodeLabel: UILabel!
     
@@ -61,7 +106,7 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
             scannerVC.barcodeDelegate = self
         }
     }
-
+    
     
     func foundBarcode(code: String) {
         /* Write to the label the code found */
@@ -90,21 +135,15 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
                 
                 let total = json.objectForKey("total")
                 if (total != nil && (total as! Int) > 0) {
-                    //print("found total")
                     let items = json.objectForKey("items")
-                    //print(items)
                     if (items != nil) {
-                        //print("found items")
                         let title = items![0].objectForKey("title")
                         if (title != nil) {
                             
-                            //Replace with FireBase Specific Implementation
-                            self.inventoryTitleArray.append(title! as! String)
-                            self.inventoryUPCArray.append(code)
+                            self.saveItemToInventory(title as! String, code: code)
+                            
                             self.InventoryList.reloadData()
                             
-                            print(title!)
-                            print(self.InventoryList)
                             
                         } else {
                             // UPC has no title
