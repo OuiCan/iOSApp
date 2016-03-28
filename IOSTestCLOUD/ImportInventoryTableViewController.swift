@@ -21,6 +21,9 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
         
         super.viewDidLoad()
         
+        // Set up swipe to delete
+        InventoryList.allowsMultipleSelectionDuringEditing = false
+        
         //Setup UITableView
         InventoryList.delegate = self
         InventoryList.dataSource = self
@@ -29,6 +32,22 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
         retrieveInventory()
         
         InventoryList.reloadData()
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        userRef.observeEventType(.Value, withBlock: { snapshot in
+            print(snapshot.value)
+            }, withCancelBlock: { error in
+                print(error.description)
+        })
+        
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
         
     }
     
@@ -91,6 +110,15 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return inventory.count
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            // 1
+            let inventoryItem = inventory[indexPath.row]
+            // 2
+            inventoryItem.ref?.removeValue()
+        }
     }
     
     
