@@ -76,7 +76,6 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
                 newInventoryItems.append(inventoryItem)
             }
             self.inventory = newInventoryItems
-            //print(newInventoryItems)
             self.InventoryList.reloadData()
         })
        
@@ -109,14 +108,13 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(inventory.count)
         return inventory.count
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // 1
             let inventoryItem = inventory[indexPath.row]
-            // 2
             inventoryItem.ref?.removeValue()
         }
     }

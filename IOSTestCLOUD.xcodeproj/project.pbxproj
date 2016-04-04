@@ -18,18 +18,18 @@
 		0410D8971C82A97800C4E3BD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0410D8961C82A97800C4E3BD /* CFNetwork.framework */; };
 		0410D8991C82A99300C4E3BD /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0410D8981C82A99300C4E3BD /* libicucore.tbd */; };
 		190D07521C971E2200240F17 /* barcodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190D07511C971E2200240F17 /* barcodeScanner.swift */; };
+		1941C8061CB066A200A6BCD8 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 1941C8041CB066A200A6BCD8 /* tessdata */; };
+		1941C8071CB066A200A6BCD8 /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1941C8051CB066A200A6BCD8 /* TesseractOCR.framework */; };
+		1941C8091CB0673000A6BCD8 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1941C8081CB0673000A6BCD8 /* Firebase.framework */; };
 		19C9B6811CA95C3F00531CAD /* InventoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C9B6801CA95C3F00531CAD /* InventoryItem.swift */; };
 		19C9B6831CA95C5500531CAD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C9B6821CA95C5500531CAD /* User.swift */; };
-		19CC35B91C9DF6A200E7CA9C /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19CC35B81C9DF6A200E7CA9C /* Firebase.framework */; };
 		19CC35BD1C9E105500E7CA9C /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CC35BC1C9E105500E7CA9C /* MainMenuViewController.swift */; };
 		19CC35BF1C9E107A00E7CA9C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CC35BE1C9E107A00E7CA9C /* LoginViewController.swift */; };
 		19CC35C21C9E70EF00E7CA9C /* LoginPageOuican.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19CC35C11C9E70EF00E7CA9C /* LoginPageOuican.jpg */; };
 		19CC35C41C9E813D00E7CA9C /* DashboardOuican.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19CC35C31C9E813D00E7CA9C /* DashboardOuican.jpg */; };
 		19CC35C61CA108CA00E7CA9C /* TesseractViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CC35C51CA108CA00E7CA9C /* TesseractViewController.swift */; };
-		19CC35D91CA2080500E7CA9C /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19CC35D81CA2080500E7CA9C /* TesseractOCR.framework */; };
 		19CC35DB1CA2082A00E7CA9C /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 19CC35DA1CA2082A00E7CA9C /* libstdc++.tbd */; };
 		19CC35DD1CA2084A00E7CA9C /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19CC35DC1CA2084A00E7CA9C /* CoreImage.framework */; };
-		19CC35DF1CA2097000E7CA9C /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 19CC35DE1CA2097000E7CA9C /* tessdata */; };
 		19CFA21B1CA84BFA00DFECAA /* FirebaseInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CFA21A1CA84BFA00DFECAA /* FirebaseInterface.swift */; };
 		19CFA2211CA8976600DFECAA /* ImportInventoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CFA2201CA8976500DFECAA /* ImportInventoryTableViewController.swift */; };
 		947361341C9A342D008A0A68 /* reportScannedBarcodeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947361331C9A342D008A0A68 /* reportScannedBarcodeDelegate.swift */; };
@@ -70,18 +70,18 @@
 		0410D8961C82A97800C4E3BD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		0410D8981C82A99300C4E3BD /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		190D07511C971E2200240F17 /* barcodeScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = barcodeScanner.swift; sourceTree = "<group>"; };
+		1941C8041CB066A200A6BCD8 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
+		1941C8051CB066A200A6BCD8 /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = "<group>"; };
+		1941C8081CB0673000A6BCD8 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		19C9B6801CA95C3F00531CAD /* InventoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryItem.swift; sourceTree = "<group>"; };
 		19C9B6821CA95C5500531CAD /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		19CC35B81C9DF6A200E7CA9C /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		19CC35BC1C9E105500E7CA9C /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		19CC35BE1C9E107A00E7CA9C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
 		19CC35C11C9E70EF00E7CA9C /* LoginPageOuican.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = LoginPageOuican.jpg; sourceTree = "<group>"; };
 		19CC35C31C9E813D00E7CA9C /* DashboardOuican.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DashboardOuican.jpg; sourceTree = "<group>"; };
 		19CC35C51CA108CA00E7CA9C /* TesseractViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TesseractViewController.swift; sourceTree = "<group>"; };
-		19CC35D81CA2080500E7CA9C /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = "<group>"; };
 		19CC35DA1CA2082A00E7CA9C /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		19CC35DC1CA2084A00E7CA9C /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
-		19CC35DE1CA2097000E7CA9C /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		19CC35E61CA20C0B00E7CA9C /* IOSTestCLOUD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IOSTestCLOUD-Bridging-Header.h"; sourceTree = "<group>"; };
 		19CFA21A1CA84BFA00DFECAA /* FirebaseInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseInterface.swift; sourceTree = "<group>"; };
 		19CFA2201CA8976500DFECAA /* ImportInventoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportInventoryTableViewController.swift; sourceTree = "<group>"; };
@@ -94,13 +94,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				19CC35DD1CA2084A00E7CA9C /* CoreImage.framework in Frameworks */,
+				1941C8091CB0673000A6BCD8 /* Firebase.framework in Frameworks */,
 				19CC35DB1CA2082A00E7CA9C /* libstdc++.tbd in Frameworks */,
 				0410D8991C82A99300C4E3BD /* libicucore.tbd in Frameworks */,
 				0410D8971C82A97800C4E3BD /* CFNetwork.framework in Frameworks */,
-				19CC35D91CA2080500E7CA9C /* TesseractOCR.framework in Frameworks */,
 				0410D8951C82A94800C4E3BD /* libc++.tbd in Frameworks */,
-				19CC35B91C9DF6A200E7CA9C /* Firebase.framework in Frameworks */,
 				0410D8931C82A94100C4E3BD /* Security.framework in Frameworks */,
+				1941C8071CB066A200A6BCD8 /* TesseractOCR.framework in Frameworks */,
 				0410D8911C82A93B00C4E3BD /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -127,14 +127,14 @@
 			children = (
 				19CC35DA1CA2082A00E7CA9C /* libstdc++.tbd */,
 				0410D8981C82A99300C4E3BD /* libicucore.tbd */,
+				1941C8081CB0673000A6BCD8 /* Firebase.framework */,
+				1941C8041CB066A200A6BCD8 /* tessdata */,
+				1941C8051CB066A200A6BCD8 /* TesseractOCR.framework */,
 				19CC35DC1CA2084A00E7CA9C /* CoreImage.framework */,
-				19CC35DE1CA2097000E7CA9C /* tessdata */,
-				19CC35D81CA2080500E7CA9C /* TesseractOCR.framework */,
 				0410D8961C82A97800C4E3BD /* CFNetwork.framework */,
 				0410D8941C82A94800C4E3BD /* libc++.tbd */,
 				0410D8921C82A94100C4E3BD /* Security.framework */,
 				0410D8901C82A93B00C4E3BD /* SystemConfiguration.framework */,
-				19CC35B81C9DF6A200E7CA9C /* Firebase.framework */,
 				0410D85F1C82A8FC00C4E3BD /* IOSTestCLOUD */,
 				0410D8741C82A8FC00C4E3BD /* IOSTestCLOUDTests */,
 				0410D87F1C82A8FC00C4E3BD /* IOSTestCLOUDUITests */,
@@ -340,7 +340,7 @@
 			files = (
 				0410D8681C82A8FC00C4E3BD /* Assets.xcassets in Resources */,
 				19CC35C41C9E813D00E7CA9C /* DashboardOuican.jpg in Resources */,
-				19CC35DF1CA2097000E7CA9C /* tessdata in Resources */,
+				1941C8061CB066A200A6BCD8 /* tessdata in Resources */,
 				0410D8661C82A8FC00C4E3BD /* Main.storyboard in Resources */,
 				19CC35C21C9E70EF00E7CA9C /* LoginPageOuican.jpg in Resources */,
 			);
