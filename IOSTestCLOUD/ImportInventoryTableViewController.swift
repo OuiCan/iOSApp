@@ -39,7 +39,7 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
         super.viewDidAppear(animated)
         
         userRef.observeEventType(.Value, withBlock: { snapshot in
-            print(snapshot.value)
+            //print(snapshot.value)
             }, withCancelBlock: { error in
                 print(error.description)
         })
@@ -108,7 +108,6 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(inventory.count)
         return inventory.count
     }
     

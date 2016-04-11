@@ -12,10 +12,6 @@ import Foundation
 class TesseractViewController: UIViewController, UITextViewDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var textView: UITextView!
-    /*
-    @IBOutlet weak var findTextField: UITextField!
-    @IBOutlet weak var replaceTextField: UITextField!
-    */
     @IBOutlet weak var topMarginConstraint: NSLayoutConstraint!
     
     
@@ -33,7 +29,6 @@ class TesseractViewController: UIViewController, UITextViewDelegate, UINavigatio
     }
     
     @IBAction func takePhoto(sender: AnyObject) {
-        // 1
         view.endEditing(true)
         moveViewDown()
         // 2
@@ -96,11 +91,11 @@ class TesseractViewController: UIViewController, UITextViewDelegate, UINavigatio
         return scaledImage
     }
     
-    func performImageRecognition(image: UIImage) {
+    func performImageRecognition(image: UIImage) -> String {
         // 1
         let tesseract = G8Tesseract()
         // 2
-        tesseract.language = "eng+fra"
+        tesseract.language = "eng"
         // 3
         tesseract.engineMode = .TesseractCubeCombined
         // 4
@@ -111,11 +106,23 @@ class TesseractViewController: UIViewController, UITextViewDelegate, UINavigatio
         tesseract.image = image.g8_blackAndWhite()
         tesseract.recognize()
         // 7
-        textView.text = tesseract.recognizedText
-        textView.editable = true
-        // 8
-        removeActivityIndicator()
+        return tesseract.recognizedText
     }
+    
+    
+    func parseRecognizedTextForUPC(recognizedText: String) -> [String] {
+        do {
+            let regex = try NSRegularExpression(pattern: "[0-9]{12}", options: [])
+            let nsString = recognizedText as NSString
+            let results = regex.matchesInString(recognizedText, options: [], range: NSMakeRange(0, nsString.length))
+            return results.map { nsString.substringWithRange($0.range)}
+        } catch let error as NSError {
+            print("invalid regex: \(error.localizedDescription)")
+            return []
+        }
+    }
+    
+    
     
     /******** General UIX Stuff Begin ***********/
      
@@ -189,12 +196,17 @@ extension TesseractViewController: UIImagePickerControllerDelegate{
     func imagePickerController(picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [String : AnyObject]) {
             let selectedPhoto = info[UIImagePickerControllerOriginalImage] as! UIImage
-            let scaledImage = scaleImage(selectedPhoto, maxDimension: 640)
+            let scaledImage = scaleImage(selectedPhoto, maxDimension: 3840)
             
             addActivityIndicator()
             
             dismissViewControllerAnimated(true, completion: {
-                self.performImageRecognition(scaledImage)
+                let recognizedText = self.performImageRecognition(scaledImage)
+                self.textView.text = recognizedText
+                self.textView.editable = true
+                let recognizedUPC = self.parseRecognizedTextForUPC(recognizedText)
+                print(recognizedUPC)
+                self.removeActivityIndicator()
             })
     }
 }

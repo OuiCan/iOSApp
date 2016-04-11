@@ -111,6 +111,21 @@ class MainMenuViewController: UIViewController {
                 print(error.description)
         })
     }
+    
+    func retrieveInventoryCount() {
+        userRef.observeEventType(.Value, withBlock: { snapshot in
+            print(snapshot.value.objectForKey("Weight"))
+            let inventoryCountText = snapshot.value.objectForKey("Weight") as? String
+            print(inventoryCountText)
+            if (inventoryCountText != nil){
+                self.weightLabel.text = inventoryCountText! + " Kg"
+                let angle = ((Double(inventoryCountText!)!/20))*360
+                self.progressWeight.angle = angle
+            }
+            }, withCancelBlock: { error in
+                print(error.description)
+        })
+    }
 
     
     
