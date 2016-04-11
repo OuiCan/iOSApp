@@ -18,9 +18,11 @@
 		0410D8971C82A97800C4E3BD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0410D8961C82A97800C4E3BD /* CFNetwork.framework */; };
 		0410D8991C82A99300C4E3BD /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0410D8981C82A99300C4E3BD /* libicucore.tbd */; };
 		190D07521C971E2200240F17 /* barcodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190D07511C971E2200240F17 /* barcodeScanner.swift */; };
+		19176AEE1CB21B3D00C34CC8 /* DashboardOuicanSB.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19176AED1CB21B3D00C34CC8 /* DashboardOuicanSB.jpg */; };
 		1941C8061CB066A200A6BCD8 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 1941C8041CB066A200A6BCD8 /* tessdata */; };
 		1941C8071CB066A200A6BCD8 /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1941C8051CB066A200A6BCD8 /* TesseractOCR.framework */; };
 		1941C8091CB0673000A6BCD8 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1941C8081CB0673000A6BCD8 /* Firebase.framework */; };
+		194727941CBB6CFB00FB0370 /* KDCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194727931CBB6CFB00FB0370 /* KDCircularProgress.swift */; };
 		19C9B6811CA95C3F00531CAD /* InventoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C9B6801CA95C3F00531CAD /* InventoryItem.swift */; };
 		19C9B6831CA95C5500531CAD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C9B6821CA95C5500531CAD /* User.swift */; };
 		19CC35BD1C9E105500E7CA9C /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CC35BC1C9E105500E7CA9C /* MainMenuViewController.swift */; };
@@ -70,9 +72,11 @@
 		0410D8961C82A97800C4E3BD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		0410D8981C82A99300C4E3BD /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		190D07511C971E2200240F17 /* barcodeScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = barcodeScanner.swift; sourceTree = "<group>"; };
+		19176AED1CB21B3D00C34CC8 /* DashboardOuicanSB.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DashboardOuicanSB.jpg; sourceTree = "<group>"; };
 		1941C8041CB066A200A6BCD8 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		1941C8051CB066A200A6BCD8 /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = "<group>"; };
 		1941C8081CB0673000A6BCD8 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
+		194727931CBB6CFB00FB0370 /* KDCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KDCircularProgress.swift; path = ../KDCircularProgress.swift; sourceTree = "<group>"; };
 		19C9B6801CA95C3F00531CAD /* InventoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryItem.swift; sourceTree = "<group>"; };
 		19C9B6821CA95C5500531CAD /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		19CC35BC1C9E105500E7CA9C /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +190,7 @@
 		19C9B6841CA95DF000531CAD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				194727931CBB6CFB00FB0370 /* KDCircularProgress.swift */,
 				19C9B6801CA95C3F00531CAD /* InventoryItem.swift */,
 				19C9B6821CA95C5500531CAD /* User.swift */,
 			);
@@ -229,6 +234,7 @@
 			children = (
 				19CC35C11C9E70EF00E7CA9C /* LoginPageOuican.jpg */,
 				19CC35C31C9E813D00E7CA9C /* DashboardOuican.jpg */,
+				19176AED1CB21B3D00C34CC8 /* DashboardOuicanSB.jpg */,
 			);
 			name = Graphics;
 			sourceTree = "<group>";
@@ -342,6 +348,7 @@
 				19CC35C41C9E813D00E7CA9C /* DashboardOuican.jpg in Resources */,
 				1941C8061CB066A200A6BCD8 /* tessdata in Resources */,
 				0410D8661C82A8FC00C4E3BD /* Main.storyboard in Resources */,
+				19176AEE1CB21B3D00C34CC8 /* DashboardOuicanSB.jpg in Resources */,
 				19CC35C21C9E70EF00E7CA9C /* LoginPageOuican.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -371,6 +378,7 @@
 				19CFA2211CA8976600DFECAA /* ImportInventoryTableViewController.swift in Sources */,
 				19CC35BD1C9E105500E7CA9C /* MainMenuViewController.swift in Sources */,
 				947361341C9A342D008A0A68 /* reportScannedBarcodeDelegate.swift in Sources */,
+				194727941CBB6CFB00FB0370 /* KDCircularProgress.swift in Sources */,
 				19CFA21B1CA84BFA00DFECAA /* FirebaseInterface.swift in Sources */,
 				19C9B6811CA95C3F00531CAD /* InventoryItem.swift in Sources */,
 				19CC35C61CA108CA00E7CA9C /* TesseractViewController.swift in Sources */,

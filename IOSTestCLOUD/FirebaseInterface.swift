@@ -13,15 +13,22 @@ class FirebaseInterface {
 
     // Create a reference to a Firebase location
     var myRootRef = Firebase(url:"https://radiant-heat-681.firebaseio.com/")
+    
+    //var userRef = Firebase(url:"https://radiant-heat-681.firebaseio.com/OuiCan%20Users/oskalli")
 
-    //@IBOutlet weak var arrayViewer: UITextView!
 
-    @IBAction func updateButton(sender: AnyObject) {
-        // Do any additional setup after loading the view, typically from a nib.
-        myRootRef.observeEventType(.Value, withBlock: {
-            snapshot in
-            print("\(snapshot.key) -> \(snapshot.value)")
-            //self.arrayViewer.text=("\(snapshot.key) -> \(snapshot.value)")
+    static func retrieveFillLevel(userRefUrl: String) -> String{
+        
+        var fillLevel = "0"
+        let userRef = Firebase(url: userRefUrl)
+        userRef.observeEventType(.Value, withBlock: { snapshot in
+            print(snapshot.value.objectForKey("fillLevel"))
+            fillLevel = snapshot.value.objectForKey("fillLevel") as! String
+            }, withCancelBlock: { error in
+                print(error.description)
         })
+        print(fillLevel)
+        return fillLevel
     }
+
 }
