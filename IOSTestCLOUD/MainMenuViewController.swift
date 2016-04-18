@@ -84,9 +84,9 @@ class MainMenuViewController: UIViewController {
     
     func retrieveFillLevel() {
         userRef.observeEventType(.Value, withBlock: { snapshot in
-            print(snapshot.value.objectForKey("fillLevel"))
+            //print(snapshot.value.objectForKey("fillLevel"))
             let fillLabelText = snapshot.value.objectForKey("fillLevel") as? String
-            print(fillLabelText)
+            //print(fillLabelText)
             if (fillLabelText != nil) {
                 self.fillLabel.text = fillLabelText! + "% Full"
                 let angle = (Double(fillLabelText!)!)*3.60
@@ -114,9 +114,9 @@ class MainMenuViewController: UIViewController {
     
     func retrieveInventoryCount() {
         userRef.observeEventType(.Value, withBlock: { snapshot in
-            print(snapshot.value.objectForKey("Weight"))
+            //print(snapshot.value.objectForKey("Weight"))
             let inventoryCountText = snapshot.value.objectForKey("Weight") as? String
-            print(inventoryCountText)
+            //print(inventoryCountText)
             if (inventoryCountText != nil){
                 self.weightLabel.text = inventoryCountText! + " Kg"
                 let angle = ((Double(inventoryCountText!)!/20))*360

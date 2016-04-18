@@ -13,28 +13,30 @@ class TesseractViewController: UIViewController, UITextViewDelegate, UINavigatio
     
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var topMarginConstraint: NSLayoutConstraint!
-    
-    
+
+    var recieptDelegate: reportScannedRecieptDelegate? = nil
     var activityIndicator:UIActivityIndicatorView!
     var originalTopMargin:CGFloat!
+    var recognizedUPC = [String]()
+    var correctedUPC = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Navigation Color
+        //navigationController!.navigationBar.barTintColor = UIColor(red: 12.0/255.0, green: 200.0/255.0, blue: 100.0/255.0, alpha: 1.0)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        originalTopMargin = topMarginConstraint.constant
+        //originalTopMargin = topMarginConstraint.constant
     }
     
     @IBAction func takePhoto(sender: AnyObject) {
         view.endEditing(true)
-        moveViewDown()
-        // 2
         let imagePickerActionSheet = UIAlertController(title: "Snap/Upload Reciept",
             message: nil, preferredStyle: .ActionSheet)
-        // 3
         if UIImagePickerController.isSourceTypeAvailable(.Camera) {
             let cameraButton = UIAlertAction(title: "Take Photo",
                 style: .Default) { (alert) -> Void in
@@ -47,7 +49,6 @@ class TesseractViewController: UIViewController, UITextViewDelegate, UINavigatio
             }
             imagePickerActionSheet.addAction(cameraButton)
         }
-        // 4
         let libraryButton = UIAlertAction(title: "Choose Existing",
             style: .Default) { (alert) -> Void in
                 let imagePicker = UIImagePickerController()
@@ -58,12 +59,10 @@ class TesseractViewController: UIViewController, UITextViewDelegate, UINavigatio
                     completion: nil)
         }
         imagePickerActionSheet.addAction(libraryButton)
-        // 5
         let cancelButton = UIAlertAction(title: "Cancel",
             style: .Cancel) { (alert) -> Void in
         }
         imagePickerActionSheet.addAction(cancelButton)
-        // 6
         presentViewController(imagePickerActionSheet, animated: true,
             completion: nil)
     }
@@ -92,20 +91,13 @@ class TesseractViewController: UIViewController, UITextViewDelegate, UINavigatio
     }
     
     func performImageRecognition(image: UIImage) -> String {
-        // 1
         let tesseract = G8Tesseract()
-        // 2
         tesseract.language = "eng"
-        // 3
         tesseract.engineMode = .TesseractCubeCombined
-        // 4
         tesseract.pageSegmentationMode = .Auto
-        // 5
         tesseract.maximumRecognitionTime = 60.0
-        // 6
         tesseract.image = image.g8_blackAndWhite()
         tesseract.recognize()
-        // 7
         return tesseract.recognizedText
     }
     
@@ -123,9 +115,6 @@ class TesseractViewController: UIViewController, UITextViewDelegate, UINavigatio
     }
     
     
-    
-    /******** General UIX Stuff Begin ***********/
-     
      // Activity Indicator methods
     
     func addActivityIndicator() {
@@ -140,59 +129,56 @@ class TesseractViewController: UIViewController, UITextViewDelegate, UINavigatio
         activityIndicator.removeFromSuperview()
         activityIndicator = nil
     }
-    
-    
-    // The remaining methods handle the keyboard resignation/
-    // move the view so that the first responders aren't hidden
-    
-    func moveViewUp() {
-        if topMarginConstraint.constant != originalTopMargin {
-            return
-        }
-        
-        topMarginConstraint.constant -= 135
-        UIView.animateWithDuration(0.3, animations: { () -> Void in
-            self.view.layoutIfNeeded()
-        })
-    }
-    
-    func moveViewDown() {
-        if topMarginConstraint.constant == originalTopMargin {
-            return
-        }
-        
-        topMarginConstraint.constant = originalTopMargin
-        UIView.animateWithDuration(0.3, animations: { () -> Void in
-            self.view.layoutIfNeeded()
-        })
-        
-    }
-    
-    @IBAction func backgroundTapped(sender: AnyObject) {
-        view.endEditing(true)
-        moveViewDown()
-    }
-}
 
-extension TesseractViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(textField: UITextField) {
-        moveViewUp()
-    }
-    
-    @IBAction func textFieldEndEditing(sender: AnyObject) {
-        view.endEditing(true)
-        moveViewDown()
-    }
-    
-    func textViewDidBeginEditing(textView: UITextView) {
-        moveViewDown()
-    }
 }
-
-/******** General UIX Stuff End ***********/
 
 
 extension TesseractViewController: UIImagePickerControllerDelegate{
+    
+    func addCheckbit( upc: String) -> String{
+        let upcIntArray = upc.characters.flatMap{Int(String($0))}
+        var checkSum = 0
+        
+        
+        for index in 0...(upcIntArray.count-1) {
+            let digit = upcIntArray[index]
+            
+            if index%2 == 0 {
+                checkSum = checkSum + digit
+            }
+            else{
+                checkSum = checkSum + (3*digit)
+            }
+        }
+        
+        let checkDigit = String((10 - (checkSum%10))%10)
+        
+        return upc + checkDigit
+        
+    }
+    
+    func addCheckbitToArray(recognizedUPC: [String]) -> [String]{
+        var result = [String]()
+        for upc in recognizedUPC{
+            let correctedUPC = addCheckbit(upc)
+            result.append(correctedUPC)
+        }
+        return result
+    }
+    
+    @IBAction func uploadToInventory(sender: AnyObject) {
+        //Only call if button is pushed
+        if (self.recieptDelegate != nil) {
+            addActivityIndicator()
+            self.recieptDelegate!.uploadReceipt(self.correctedUPC)
+            self.textView.text = "UPC's uploaded."
+            self.removeActivityIndicator()
+
+        }
+        
+    }
+    
+    
     func imagePickerController(picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [String : AnyObject]) {
             let selectedPhoto = info[UIImagePickerControllerOriginalImage] as! UIImage
@@ -201,12 +187,29 @@ extension TesseractViewController: UIImagePickerControllerDelegate{
             addActivityIndicator()
             
             dismissViewControllerAnimated(true, completion: {
+                
                 let recognizedText = self.performImageRecognition(scaledImage)
-                self.textView.text = recognizedText
-                self.textView.editable = true
-                let recognizedUPC = self.parseRecognizedTextForUPC(recognizedText)
-                print(recognizedUPC)
+                self.recognizedUPC = self.parseRecognizedTextForUPC(recognizedText)
+                self.correctedUPC = self.addCheckbitToArray(self.recognizedUPC)
+                print(self.correctedUPC)
+                
+                //Display UPC in text box
+                self.textView.text = ""
+                
+                
+                if self.recognizedUPC.count == 0 {
+                    self.textView.text = "No UPC Found. Please Try Again."
+                }
+                
+                else {
+                    for upc in self.correctedUPC {
+                        self.textView.text = self.textView.text + upc + "\n"
+                    }
+                }
+                
                 self.removeActivityIndicator()
             })
+            
+            
     }
 }

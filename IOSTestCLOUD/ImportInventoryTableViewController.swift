@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ImportInventoryTableViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDataSource, UITableViewDelegate, reportScannedBarcodeDelegate {
+class ImportInventoryTableViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDataSource, UITableViewDelegate, reportScannedBarcodeDelegate, reportScannedRecieptDelegate {
     
     var json: Array<String>!
     var inventory = [InventoryItem]()
@@ -20,6 +20,8 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        // Change color of navigation view controller
+        //navigationController!.navigationBar.barTintColor = UIColor.blackColor()
         
         // Set up swipe to delete
         InventoryList.allowsMultipleSelectionDuringEditing = false
@@ -39,7 +41,6 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
         super.viewDidAppear(animated)
         
         userRef.observeEventType(.Value, withBlock: { snapshot in
-            //print(snapshot.value)
             }, withCancelBlock: { error in
                 print(error.description)
         })
@@ -120,7 +121,7 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
     
     
     
-    /**************** Scan Barcode ***********/
+    /**************** Scan Barcode or Reciept ***********/
     
     @IBOutlet weak var scannedBarcodeLabel: UILabel!
     
@@ -130,14 +131,25 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
             let scannerVC = segue.destinationViewController as! ScannerViewController
             scannerVC.barcodeDelegate = self
         }
+        
+        if (segue.identifier == "uploadRecieptSegue"){
+            let scannerVC = segue.destinationViewController as! TesseractViewController
+            scannerVC.recieptDelegate = self
+        }
     }
     
     
     func foundBarcode(code: String) {
         /* Write to the label the code found */
-        scannedBarcodeLabel.text = code
         jsonParser(code)
     }
+    
+    func uploadReceipt(UPCArray: [String]) {
+        for code in UPCArray {
+            jsonParser(code)
+        }
+    }
+    
     
     /**************** Parse JSON ******************/
     
@@ -165,10 +177,10 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
                         let title = items![0].objectForKey("title")
                         if (title != nil) {
                             
+                            print("Saving to inventory:" + code)
                             self.saveItemToInventory(title as! String, code: code)
                             
                             self.InventoryList.reloadData()
-                            
                             
                         } else {
                             // UPC has no title
