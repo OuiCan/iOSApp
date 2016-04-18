@@ -178,7 +178,7 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
     }
     
     func jsonParser(code: String) {
-        let urlPath = "http://api.upcdatabase.org/json/e8319de52fb274fd74c0fc04e41fc440/" + code
+        let urlPath = "http://www.searchupc.com/handlers/upcsearch.ashx?request_type=3&access_token=C81A66CF-E26F-4674-B350-9A1528661672&upc=" + code
         guard let endpoint = NSURL(string: urlPath) else {
             print("Error creating endpoint");
             return
@@ -192,17 +192,12 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
                 print(response)
                 print(error)
                 
-                let valid = json.objectForKey("valid")
-                print(valid)
-                if (valid != nil && (valid as! String) == "true") {
-                    var title = json.objectForKey("itemname")
+                let productInfo = json.objectForKey("0")
+                if (productInfo != nil) {
+                    let title = productInfo!.objectForKey("productname")
                     print(title)
                     
-                    if ((title as! String) == "") {
-                        title = json.objectForKey("description")
-                        print("title changed to " + (title as! String))
-                    }
-                    if (title != nil && (title as! String) != "") {
+                    if (title != nil && (title as! String) != " ") {
                             
                             print("Saving to inventory:" + code)
                             self.saveItemToInventory(title as! String, code: code)
@@ -211,7 +206,7 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
                             
                         } else {
                             // UPC has no title
-                            print("No title found for given UPC %s", code)
+                            print("No title found for given UPC: ", code)
                         }
                     
                 } else {
