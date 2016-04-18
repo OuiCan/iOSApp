@@ -169,11 +169,8 @@ extension TesseractViewController: UIImagePickerControllerDelegate{
     @IBAction func uploadToInventory(sender: AnyObject) {
         //Only call if button is pushed
         if (self.recieptDelegate != nil) {
-            addActivityIndicator()
             self.recieptDelegate!.uploadReceipt(self.correctedUPC)
-            self.textView.text = "UPC's uploaded."
-            self.removeActivityIndicator()
-
+            self.textView.text = "Uploading UPCs to server..."
         }
         
     }

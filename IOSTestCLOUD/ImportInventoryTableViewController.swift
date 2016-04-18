@@ -14,6 +14,8 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
     var json: Array<String>!
     var inventory = [InventoryItem]()
     var user: User!
+    var activityIndicator:UIActivityIndicatorView!
+
     
     @IBOutlet weak var InventoryList: UITableView!
     
@@ -55,6 +57,21 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // Activity Indicator methods
+    
+    func addActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView(frame: view.bounds)
+        activityIndicator.activityIndicatorViewStyle = .WhiteLarge
+        activityIndicator.backgroundColor = UIColor(white: 0, alpha: 0.25)
+        activityIndicator.startAnimating()
+        view.addSubview(activityIndicator)
+    }
+    
+    func removeActivityIndicator() {
+        activityIndicator.removeFromSuperview()
+        activityIndicator = nil
     }
     
     
@@ -145,9 +162,11 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
     }
     
     func uploadReceipt(UPCArray: [String]) {
+        addActivityIndicator()
         for code in UPCArray {
             jsonParser(code)
         }
+        removeActivityIndicator()
     }
     
     
@@ -159,7 +178,7 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
     }
     
     func jsonParser(code: String) {
-        let urlPath = "https://api.upcitemdb.com/prod/trial/lookup?upc=" + code
+        let urlPath = "http://api.upcdatabase.org/json/e8319de52fb274fd74c0fc04e41fc440/" + code
         guard let endpoint = NSURL(string: urlPath) else {
             print("Error creating endpoint");
             return
@@ -170,12 +189,20 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
                 guard let dat = data else { throw JSONError.NoData }
                 guard let json = try NSJSONSerialization.JSONObjectWithData(dat, options: []) as? NSDictionary else { throw JSONError.ConversionFailed }
                 
-                let total = json.objectForKey("total")
-                if (total != nil && (total as! Int) > 0) {
-                    let items = json.objectForKey("items")
-                    if (items != nil) {
-                        let title = items![0].objectForKey("title")
-                        if (title != nil) {
+                print(response)
+                print(error)
+                
+                let valid = json.objectForKey("valid")
+                print(valid)
+                if (valid != nil && (valid as! String) == "true") {
+                    var title = json.objectForKey("itemname")
+                    print(title)
+                    
+                    if ((title as! String) == "") {
+                        title = json.objectForKey("description")
+                        print("title changed to " + (title as! String))
+                    }
+                    if (title != nil && (title as! String) != "") {
                             
                             print("Saving to inventory:" + code)
                             self.saveItemToInventory(title as! String, code: code)
@@ -186,17 +213,19 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
                             // UPC has no title
                             print("No title found for given UPC %s", code)
                         }
-                    }
+                    
                 } else {
                     // Nothing was found
                     print("Nothing was found")
                 }
                 
-            } catch let error as JSONError {
-                print(error.rawValue)
-            } catch {
-                print(error)
             }
+            catch let error as JSONError {
+                print(error.rawValue)
+                }
+            catch {
+                print(error)
+                }
             }.resume()
     }
     
