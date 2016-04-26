@@ -125,6 +125,15 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kl9-Zx-UIp">
+                                <rect key="frame" x="39" y="621" width="63" height="30"/>
+                                <state key="normal" title="Analytics">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Uf5-VY-cnv" kind="show" id="15p-2P-Wrt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -140,6 +149,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dk1-YA-fcW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2355" y="418"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="mbZ-mV-0wT">
+            <objects>
+                <viewController id="Uf5-VY-cnv" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3li-zX-y8o"/>
+                        <viewControllerLayoutGuide type="bottom" id="cXo-GC-Nvc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="610-Dm-mPI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rer-93-dfy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2355" y="1290"/>
         </scene>
         <!--Inventory-->
         <scene sceneID="CKQ-IR-OP1">

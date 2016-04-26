@@ -99,9 +99,7 @@ class MainMenuViewController: UIViewController {
     
     func retrieveWeight() {
         userRef.observeEventType(.Value, withBlock: { snapshot in
-            print(snapshot.value.objectForKey("Weight"))
             let weightLabelText = snapshot.value.objectForKey("Weight") as? String
-            print(weightLabelText)
             if (weightLabelText != nil){
                 self.weightLabel.text = weightLabelText! + " Kg"
                 let angle = ((Double(weightLabelText!)!/20))*360

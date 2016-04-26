@@ -34,7 +34,6 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
         
         //Pull Existing Inventory from FireBase Here
         retrieveInventory()
-        
         InventoryList.reloadData()
         
     }
@@ -101,16 +100,42 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
     
     func saveItemToInventory(title: String ,code: String){
         
-        let inventoryItem = InventoryItem(title: title, UPC: code, expired: false, key: "")
-                
+        
         let inventoryRef = userRef.childByAppendingPath("inventory")
-
+        
         let inventoryItemRef = inventoryRef.childByAppendingPath(code)
-                
-        inventoryItemRef.setValue(inventoryItem.toAnyObject())
+        
+        let upcRef = inventoryRef.childByAppendingPath(code)
+        
+        upcRef.observeEventType(.Value, withBlock: {snap in
+            
+            if snap.value is NSNull{
+                // Quantity = 1
+                //Never thrownOut
+                let inventoryItem = InventoryItem(title: title, UPC: code, quantity: 1, expired: false, thrownOut:0, key: "")
+                inventoryItemRef.setValue(inventoryItem.toAnyObject())
+            }
+            
+            else{
+                //Quantity = Quantity + 1
+                //Maintain thrownOut
+                var quantity = ((snap.value["quantity"]) as! Int)
+                print(quantity)
+                quantity = quantity + 1
+                let thrownOut = (snap.value["thrownOut"]) as! Int
+                let inventoryItem = InventoryItem(title: title, UPC: code, quantity: quantity, expired: false, thrownOut: thrownOut, key: "")
+                inventoryItemRef.setValue(inventoryItem.toAnyObject())
+            }
+        })
+        
+        //Update Inventory count
+        let inventoryCountRef = userRef.childByAppendingPath("inventorySize")
+        
+        inventoryCountRef.observeEventType(.Value, withBlock: {snap in
+            inventoryCountRef.setValue(self.inventory.count)
+        })
+        
     }
-
-    
     
     /**************** Populate table ***********/
     
@@ -189,19 +214,14 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
                 guard let dat = data else { throw JSONError.NoData }
                 guard let json = try NSJSONSerialization.JSONObjectWithData(dat, options: []) as? NSDictionary else { throw JSONError.ConversionFailed }
                 
-                print(response)
-                print(error)
-                
                 let productInfo = json.objectForKey("0")
                 if (productInfo != nil) {
                     let title = productInfo!.objectForKey("productname")
-                    print(title)
                     
                     if (title != nil && (title as! String) != " ") {
                             
                             print("Saving to inventory:" + code)
                             self.saveItemToInventory(title as! String, code: code)
-                            
                             self.InventoryList.reloadData()
                             
                         } else {

@@ -13,16 +13,21 @@ struct InventoryItem {
     
     let key: String!
     let title: String!
+    var quantity: Int!
     let UPC: String!
     let ref: Firebase?
     var expired: Bool!
+    var thrownOut: Int!
     
     // Initialize from arbitrary data
-    init(title: String, UPC: String, expired: Bool, key: String = "") {
+    init(title: String, UPC: String, quantity: Int, expired: Bool, thrownOut: Int, key: String = "") {
         self.key = key
         self.title = title
         self.UPC = UPC
+        self.quantity = quantity
         self.expired = expired
+        self.thrownOut = thrownOut
+        
         self.ref = nil
     }
     
@@ -30,7 +35,9 @@ struct InventoryItem {
         key = snapshot.key
         title = snapshot.value["title"] as! String
         UPC = snapshot.value["UPC"] as! String
+        quantity = snapshot.value["quantity"] as! Int
         expired = snapshot.value["expired"] as! Bool
+        thrownOut = snapshot.value["thrownOut"] as! Int
         ref = snapshot.ref
     }
     
@@ -38,7 +45,9 @@ struct InventoryItem {
         return [
             "title": title,
             "UPC": UPC,
-            "expired": expired
+            "quantity": quantity,
+            "expired": expired,
+            "thrownOut": thrownOut
         ]
     }
     
