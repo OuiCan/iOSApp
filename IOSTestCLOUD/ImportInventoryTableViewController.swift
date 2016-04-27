@@ -15,7 +15,6 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
     var inventory = [InventoryItem]()
     var user: User!
     var activityIndicator:UIActivityIndicatorView!
-    let ref = Firebase(url: "https://radiant-heat-681.firebaseio.com/OuiCan%20Users")
 
     
     
@@ -74,7 +73,7 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
     /*************** Firebase ******************/
      
     //User Specific --- OSKALLI
-    var userRef = Firebase(url:"https://radiant-heat-681.firebaseio.com/OuiCan%20Users/oskalli")
+    var userRef = Firebase(url:"https://ouican.firebaseio.com/Ouican%20Users/oskalli")
     
     
     func retrieveInventory(){
@@ -99,26 +98,21 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
         
         let inventoryRef = userRef.childByAppendingPath("inventory")
         let inventoryItemRef = inventoryRef.childByAppendingPath(code)
-        /*let inventoryItem = InventoryItem(title: title, UPC: code, quantity: 1, expired: false, thrownOut:0, key: "")
-        print("AGSSH", inventoryItem.title, inventoryItem.UPC)
-        inventoryItemRef.setValue(inventoryItem.toAnyObject())
-        */
-
         
         inventoryItemRef.observeSingleEventOfType(.Value, withBlock: {snapshot in
             
             if !snapshot.exists(){
                 let inventoryItem = InventoryItem(title: title, UPC: code, quantity: 1, expired: false, thrownOut:0, key: "")
-                print("Saving", 1, " quantity with upc: ", code)
+                print("Saving", 1, " item with upc: ", code)
                 inventoryItemRef.setValue(inventoryItem.toAnyObject())
             }
             
-            else{
+            else {
                 var quantity = snapshot.value["quantity"] as? Int
                 quantity = quantity! + 1
                 let thrownOut = (snapshot.value["thrownOut"]) as? Int
                 let inventoryItem = InventoryItem(title: title, UPC: code, quantity: quantity!, expired: false, thrownOut: thrownOut!, key: "")
-                print("Saving", quantity, " quantity with upc: ", code)
+                print("Saving", String(quantity), " item with upc: ", code)
                 inventoryItemRef.setValue(inventoryItem.toAnyObject())
                 
             }

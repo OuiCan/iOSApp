@@ -11,8 +11,8 @@ import Firebase
 
 class MainMenuViewController: UIViewController {
     
-    let ref = Firebase(url: "https://radiant-heat-681.firebaseio.com/OuiCan%20Users")
-    var userRef = Firebase(url:"https://radiant-heat-681.firebaseio.com/OuiCan%20Users/oskalli")
+    let ref = Firebase(url: "https://ouican.firebaseio.com/Ouican%20Users/")
+    var userRef = Firebase(url:"https://ouican.firebaseio.com/Ouican%20Users/oskalli")
     var user: User!
     var progressWeight: KDCircularProgress!
     var progressFill: KDCircularProgress!
@@ -32,8 +32,7 @@ class MainMenuViewController: UIViewController {
         setupWeightProgressBar()
         retrieveFillLevel()
         retrieveWeight()
-        setInventoryCount()
-        retrieveInventoryCount()
+        setAndRetriveInventoryCount()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -87,13 +86,13 @@ class MainMenuViewController: UIViewController {
         view.addSubview(progressWeight)
     }
     
-    func setInventoryCount() {
+    func setAndRetriveInventoryCount() {
         
         //Update Inventory count
         
         let inventoryRef = userRef.childByAppendingPath("inventory")
 
-        let inventoryCountRef = userRef.childByAppendingPath("inventorySize")
+        let inventoryCountRef = userRef.childByAppendingPath("Inventory Count")
         
         inventoryRef.observeEventType(.Value, withBlock: {snap in
             
@@ -104,7 +103,7 @@ class MainMenuViewController: UIViewController {
             }
             
             inventoryCountRef.setValue(itemCount)
-            print("item Count= ", itemCount)
+            self.inventoryCountText.text = String(itemCount)
         })
     }
 
@@ -136,23 +135,5 @@ class MainMenuViewController: UIViewController {
                 print(error.description)
         })
     }
-    
-    func retrieveInventoryCount() {
-        userRef.observeEventType(.Value, withBlock: { snapshot in
-            let inventoryCountText = snapshot.value.objectForKey("inventorySize") as? String
-            //print(inventoryCountText)
-            if (inventoryCountText != nil){
-                self.inventoryCountText.text = inventoryCountText! + " Items"
-            }
-            else {
-                self.inventoryCountText.text = "0 Items"
-            }
-            
-            }, withCancelBlock: { error in
-                print(error.description)
-        })
-    }
-
-    
     
 }

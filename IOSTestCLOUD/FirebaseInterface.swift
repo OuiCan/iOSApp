@@ -13,8 +13,6 @@ class FirebaseInterface {
 
     // Create a reference to a Firebase location
     var myRootRef = Firebase(url:"https://radiant-heat-681.firebaseio.com/")
-    
-    //var userRef = Firebase(url:"https://radiant-heat-681.firebaseio.com/OuiCan%20Users/oskalli")
 
 
     static func retrieveFillLevel(userRefUrl: String) -> String{
