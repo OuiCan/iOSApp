@@ -33,11 +33,12 @@ struct InventoryItem {
     
     init(snapshot: FDataSnapshot) {
         key = snapshot.key
-        title = snapshot.value["title"] as! String
-        UPC = snapshot.value["UPC"] as! String
-        quantity = snapshot.value["quantity"] as! Int
-        expired = snapshot.value["expired"] as! Bool
-        thrownOut = snapshot.value["thrownOut"] as! Int
+        title = snapshot.value["title"] as? String
+        UPC = snapshot.value["UPC"] as? String
+        quantity = snapshot.value["quantity"] as? Int
+        expired = snapshot.value["expired"] as? Bool
+        thrownOut = snapshot.value["thrownOut"] as? Int
+        
         ref = snapshot.ref
     }
     

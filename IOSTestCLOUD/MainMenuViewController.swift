@@ -19,7 +19,9 @@ class MainMenuViewController: UIViewController {
     
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var fillLabel: UILabel!
+    @IBOutlet weak var inventoryCountText: UILabel!
 
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,17 +32,22 @@ class MainMenuViewController: UIViewController {
         setupWeightProgressBar()
         retrieveFillLevel()
         retrieveWeight()
-        
+        setInventoryCount()
+        retrieveInventoryCount()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+
         ref.observeAuthEventWithBlock { authData in
             if authData != nil {
                 self.user = User(authData: authData)
                 print(self.user.uid)
             }
         }
+
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -80,9 +87,29 @@ class MainMenuViewController: UIViewController {
         view.addSubview(progressWeight)
     }
     
+    func setInventoryCount() {
+        
+        //Update Inventory count
+        
+        let inventoryRef = userRef.childByAppendingPath("inventory")
+
+        let inventoryCountRef = userRef.childByAppendingPath("inventorySize")
+        
+        inventoryRef.observeEventType(.Value, withBlock: {snap in
+            
+            var itemCount = 0
+            
+            for _ in snap.children{
+                itemCount++
+            }
+            
+            inventoryCountRef.setValue(itemCount)
+            print("item Count= ", itemCount)
+        })
+    }
+
     
-    
-    func retrieveFillLevel() {
+    func retrieveFillLevel() {        
         userRef.observeEventType(.Value, withBlock: { snapshot in
             //print(snapshot.value.objectForKey("fillLevel"))
             let fillLabelText = snapshot.value.objectForKey("fillLevel") as? String
@@ -112,14 +139,15 @@ class MainMenuViewController: UIViewController {
     
     func retrieveInventoryCount() {
         userRef.observeEventType(.Value, withBlock: { snapshot in
-            //print(snapshot.value.objectForKey("Weight"))
-            let inventoryCountText = snapshot.value.objectForKey("Weight") as? String
+            let inventoryCountText = snapshot.value.objectForKey("inventorySize") as? String
             //print(inventoryCountText)
             if (inventoryCountText != nil){
-                self.weightLabel.text = inventoryCountText! + " Kg"
-                let angle = ((Double(inventoryCountText!)!/20))*360
-                self.progressWeight.angle = angle
+                self.inventoryCountText.text = inventoryCountText! + " Items"
             }
+            else {
+                self.inventoryCountText.text = "0 Items"
+            }
+            
             }, withCancelBlock: { error in
                 print(error.description)
         })

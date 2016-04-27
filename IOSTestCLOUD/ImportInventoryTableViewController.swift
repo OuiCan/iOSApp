@@ -15,7 +15,9 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
     var inventory = [InventoryItem]()
     var user: User!
     var activityIndicator:UIActivityIndicatorView!
+    let ref = Firebase(url: "https://radiant-heat-681.firebaseio.com/OuiCan%20Users")
 
+    
     
     @IBOutlet weak var InventoryList: UITableView!
     
@@ -40,11 +42,6 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        userRef.observeEventType(.Value, withBlock: { snapshot in
-            }, withCancelBlock: { error in
-                print(error.description)
-        })
         
     }
     
@@ -95,50 +92,40 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
             self.inventory = newInventoryItems
             self.InventoryList.reloadData()
         })
-       
     }
+    
     
     func saveItemToInventory(title: String ,code: String){
         
-        
         let inventoryRef = userRef.childByAppendingPath("inventory")
-        
         let inventoryItemRef = inventoryRef.childByAppendingPath(code)
+        /*let inventoryItem = InventoryItem(title: title, UPC: code, quantity: 1, expired: false, thrownOut:0, key: "")
+        print("AGSSH", inventoryItem.title, inventoryItem.UPC)
+        inventoryItemRef.setValue(inventoryItem.toAnyObject())
+        */
+
         
-        let upcRef = inventoryRef.childByAppendingPath(code)
-        
-        upcRef.observeSingleEventOfType(.Value, withBlock: {snapshot in
+        inventoryItemRef.observeSingleEventOfType(.Value, withBlock: {snapshot in
             
             if !snapshot.exists(){
-                // Quantity = 1
-                //Never thrownOut
                 let inventoryItem = InventoryItem(title: title, UPC: code, quantity: 1, expired: false, thrownOut:0, key: "")
+                print("Saving", 1, " quantity with upc: ", code)
                 inventoryItemRef.setValue(inventoryItem.toAnyObject())
             }
             
             else{
-                //Quantity = Quantity + 1
-                //Maintain thrownOut
-                var quantity = ((snapshot.value["quantity"]) as! Int)
-                quantity = quantity + 1
-                let thrownOut = (snapshot.value["thrownOut"]) as! Int
-                let inventoryItem = InventoryItem(title: title, UPC: code, quantity: quantity, expired: false, thrownOut: thrownOut, key: "")
+                var quantity = snapshot.value["quantity"] as? Int
+                quantity = quantity! + 1
+                let thrownOut = (snapshot.value["thrownOut"]) as? Int
+                let inventoryItem = InventoryItem(title: title, UPC: code, quantity: quantity!, expired: false, thrownOut: thrownOut!, key: "")
+                print("Saving", quantity, " quantity with upc: ", code)
                 inventoryItemRef.setValue(inventoryItem.toAnyObject())
+                
             }
         })
-        
-        /*
-        //Update Inventory count
-        let inventoryCountRef = userRef.childByAppendingPath("inventorySize")
-        
-        inventoryCountRef.observeEventType(.Value, withBlock: {snap in
-            inventoryCountRef.setValue(self.inventory.count)
-        })
-        
-        print("Inventory count is now ", inventory.count)
-        */
 
     }
+    
     
     /**************** Populate table ***********/
     
@@ -223,7 +210,6 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
                     
                     if (title != nil && (title as! String) != " ") {
                             
-                            print("Saving to inventory:" + code)
                             self.saveItemToInventory(title as! String, code: code)
                             self.InventoryList.reloadData()
                             

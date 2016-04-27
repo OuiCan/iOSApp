@@ -19,11 +19,11 @@
 		0410D8991C82A99300C4E3BD /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0410D8981C82A99300C4E3BD /* libicucore.tbd */; };
 		190D07521C971E2200240F17 /* barcodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190D07511C971E2200240F17 /* barcodeScanner.swift */; };
 		19176AEE1CB21B3D00C34CC8 /* DashboardOuicanSB.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19176AED1CB21B3D00C34CC8 /* DashboardOuicanSB.jpg */; };
+		192CC2DD1CD049E600EF4AB2 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 192CC2DB1CD049E600EF4AB2 /* tessdata */; };
+		192CC2DE1CD049E600EF4AB2 /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 192CC2DC1CD049E600EF4AB2 /* TesseractOCR.framework */; };
+		192CC2E01CD0743500EF4AB2 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 192CC2DF1CD0743500EF4AB2 /* Firebase.framework */; };
 		1932D0431CC02B8D00278164 /* tesseractViewOuican.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1932D0411CC02B8D00278164 /* tesseractViewOuican.jpg */; };
 		1932D0441CC02B8D00278164 /* tableViewListOuican.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1932D0421CC02B8D00278164 /* tableViewListOuican.jpg */; };
-		1941C8061CB066A200A6BCD8 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 1941C8041CB066A200A6BCD8 /* tessdata */; };
-		1941C8071CB066A200A6BCD8 /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1941C8051CB066A200A6BCD8 /* TesseractOCR.framework */; };
-		1941C8091CB0673000A6BCD8 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1941C8081CB0673000A6BCD8 /* Firebase.framework */; };
 		194727941CBB6CFB00FB0370 /* KDCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194727931CBB6CFB00FB0370 /* KDCircularProgress.swift */; };
 		194727961CBEB01700FB0370 /* reportScannedRecieptDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194727951CBEB01700FB0370 /* reportScannedRecieptDelegate.swift */; };
 		19C9B6811CA95C3F00531CAD /* InventoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C9B6801CA95C3F00531CAD /* InventoryItem.swift */; };
@@ -76,11 +76,11 @@
 		0410D8981C82A99300C4E3BD /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		190D07511C971E2200240F17 /* barcodeScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = barcodeScanner.swift; sourceTree = "<group>"; };
 		19176AED1CB21B3D00C34CC8 /* DashboardOuicanSB.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DashboardOuicanSB.jpg; sourceTree = "<group>"; };
+		192CC2DB1CD049E600EF4AB2 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
+		192CC2DC1CD049E600EF4AB2 /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = "<group>"; };
+		192CC2DF1CD0743500EF4AB2 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		1932D0411CC02B8D00278164 /* tesseractViewOuican.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tesseractViewOuican.jpg; sourceTree = "<group>"; };
 		1932D0421CC02B8D00278164 /* tableViewListOuican.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tableViewListOuican.jpg; sourceTree = "<group>"; };
-		1941C8041CB066A200A6BCD8 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
-		1941C8051CB066A200A6BCD8 /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = "<group>"; };
-		1941C8081CB0673000A6BCD8 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		194727931CBB6CFB00FB0370 /* KDCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KDCircularProgress.swift; path = ../KDCircularProgress.swift; sourceTree = "<group>"; };
 		194727951CBEB01700FB0370 /* reportScannedRecieptDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = reportScannedRecieptDelegate.swift; sourceTree = "<group>"; };
 		19C9B6801CA95C3F00531CAD /* InventoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryItem.swift; sourceTree = "<group>"; };
@@ -104,14 +104,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				19CC35DD1CA2084A00E7CA9C /* CoreImage.framework in Frameworks */,
-				1941C8091CB0673000A6BCD8 /* Firebase.framework in Frameworks */,
+				192CC2E01CD0743500EF4AB2 /* Firebase.framework in Frameworks */,
 				19CC35DB1CA2082A00E7CA9C /* libstdc++.tbd in Frameworks */,
 				0410D8991C82A99300C4E3BD /* libicucore.tbd in Frameworks */,
 				0410D8971C82A97800C4E3BD /* CFNetwork.framework in Frameworks */,
 				0410D8951C82A94800C4E3BD /* libc++.tbd in Frameworks */,
 				0410D8931C82A94100C4E3BD /* Security.framework in Frameworks */,
-				1941C8071CB066A200A6BCD8 /* TesseractOCR.framework in Frameworks */,
 				0410D8911C82A93B00C4E3BD /* SystemConfiguration.framework in Frameworks */,
+				192CC2DE1CD049E600EF4AB2 /* TesseractOCR.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,11 +135,11 @@
 		0410D8541C82A8FC00C4E3BD = {
 			isa = PBXGroup;
 			children = (
+				192CC2DF1CD0743500EF4AB2 /* Firebase.framework */,
 				19CC35DA1CA2082A00E7CA9C /* libstdc++.tbd */,
+				192CC2DB1CD049E600EF4AB2 /* tessdata */,
+				192CC2DC1CD049E600EF4AB2 /* TesseractOCR.framework */,
 				0410D8981C82A99300C4E3BD /* libicucore.tbd */,
-				1941C8081CB0673000A6BCD8 /* Firebase.framework */,
-				1941C8041CB066A200A6BCD8 /* tessdata */,
-				1941C8051CB066A200A6BCD8 /* TesseractOCR.framework */,
 				19CC35DC1CA2084A00E7CA9C /* CoreImage.framework */,
 				0410D8961C82A97800C4E3BD /* CFNetwork.framework */,
 				0410D8941C82A94800C4E3BD /* libc++.tbd */,
@@ -354,8 +354,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0410D8681C82A8FC00C4E3BD /* Assets.xcassets in Resources */,
+				192CC2DD1CD049E600EF4AB2 /* tessdata in Resources */,
 				19CC35C41C9E813D00E7CA9C /* DashboardOuican.jpg in Resources */,
-				1941C8061CB066A200A6BCD8 /* tessdata in Resources */,
 				0410D8661C82A8FC00C4E3BD /* Main.storyboard in Resources */,
 				1932D0441CC02B8D00278164 /* tableViewListOuican.jpg in Resources */,
 				1932D0431CC02B8D00278164 /* tesseractViewOuican.jpg in Resources */,

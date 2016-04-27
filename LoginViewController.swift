@@ -32,12 +32,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        ref.observeAuthEventWithBlock { (authData) -> Void in
-            //if authData != nil {
-            //    self.performSegueWithIdentifier(self.LoginToDashboard, sender: nil)
-            //}
-        }
     }
     
     func textFieldShouldReturn(userText: UITextField) -> Bool {
@@ -52,7 +46,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Actions
     @IBAction func loginDidTouch(sender: AnyObject) {
-        ref.authUser(textFieldLoginEmail.text, password: textFieldLoginPassword.text,
+        
+        /*ref.authUser(textFieldLoginEmail.text, password: textFieldLoginPassword.text,
             withCompletionBlock: { (error, auth) in
                 if error != nil {
                     // There was an error logging in to this account
@@ -62,10 +57,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
                 }
         })
+        */
     
         
     }
-
     
     @IBAction func signUpDidTouch(sender: AnyObject) {
         let alert = UIAlertController(title: "Register",
