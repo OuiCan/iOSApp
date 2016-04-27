@@ -124,6 +124,7 @@
 		192CC3E21CD135E500EF4AB2 /* HandlingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192CC39C1CD135E400EF4AB2 /* HandlingView.swift */; };
 		192CC3E31CD135E500EF4AB2 /* InfoBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192CC39D1CD135E400EF4AB2 /* InfoBubble.swift */; };
 		192CC3E41CD135E500EF4AB2 /* StraightLinePathGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192CC39E1CD135E400EF4AB2 /* StraightLinePathGenerator.swift */; };
+		192CC3E71CD1797B00EF4AB2 /* DashboardOuican2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 192CC3E61CD1797B00EF4AB2 /* DashboardOuican2.jpg */; };
 		1932D0431CC02B8D00278164 /* tesseractViewOuican.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1932D0411CC02B8D00278164 /* tesseractViewOuican.jpg */; };
 		1932D0441CC02B8D00278164 /* tableViewListOuican.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1932D0421CC02B8D00278164 /* tableViewListOuican.jpg */; };
 		194727941CBB6CFB00FB0370 /* KDCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194727931CBB6CFB00FB0370 /* KDCircularProgress.swift */; };
@@ -283,6 +284,7 @@
 		192CC39C1CD135E400EF4AB2 /* HandlingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandlingView.swift; sourceTree = "<group>"; };
 		192CC39D1CD135E400EF4AB2 /* InfoBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoBubble.swift; sourceTree = "<group>"; };
 		192CC39E1CD135E400EF4AB2 /* StraightLinePathGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StraightLinePathGenerator.swift; sourceTree = "<group>"; };
+		192CC3E61CD1797B00EF4AB2 /* DashboardOuican2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DashboardOuican2.jpg; sourceTree = "<group>"; };
 		1932D0411CC02B8D00278164 /* tesseractViewOuican.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tesseractViewOuican.jpg; sourceTree = "<group>"; };
 		1932D0421CC02B8D00278164 /* tableViewListOuican.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tableViewListOuican.jpg; sourceTree = "<group>"; };
 		194727931CBB6CFB00FB0370 /* KDCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KDCircularProgress.swift; path = ../KDCircularProgress.swift; sourceTree = "<group>"; };
@@ -658,6 +660,7 @@
 				1932D0411CC02B8D00278164 /* tesseractViewOuican.jpg */,
 				1932D0421CC02B8D00278164 /* tableViewListOuican.jpg */,
 				19CC35C11C9E70EF00E7CA9C /* LoginPageOuican.jpg */,
+				192CC3E61CD1797B00EF4AB2 /* DashboardOuican2.jpg */,
 				19CC35C31C9E813D00E7CA9C /* DashboardOuican.jpg */,
 				19176AED1CB21B3D00C34CC8 /* DashboardOuicanSB.jpg */,
 			);
@@ -793,6 +796,7 @@
 				192CC2DD1CD049E600EF4AB2 /* tessdata in Resources */,
 				192CC3D51CD135E500EF4AB2 /* Info.plist in Resources */,
 				19CC35C41C9E813D00E7CA9C /* DashboardOuican.jpg in Resources */,
+				192CC3E71CD1797B00EF4AB2 /* DashboardOuican2.jpg in Resources */,
 				0410D8661C82A8FC00C4E3BD /* Main.storyboard in Resources */,
 				1932D0441CC02B8D00278164 /* tableViewListOuican.jpg in Resources */,
 				1932D0431CC02B8D00278164 /* tesseractViewOuican.jpg in Resources */,

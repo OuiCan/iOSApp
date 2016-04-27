@@ -10,7 +10,7 @@ import UIKit
 
 
 enum GraphType {
-    case HelloWorld, Bars, StackedBars, BarsPlusMinus, GroupedBars, BarsStackedGrouped, Scatter, Areas, Bubble, Coords, Target, Multival, Notifications, Combination, Scroll, EqualSpacing, Tracker, MultiAxis, MultiAxisInteractive, CandleStick, Cubiclines, NotNumeric, CandleStickInteractive, CustomUnits, Trendline
+    case Bars, StackedBars, BarsPlusMinus, GroupedBars, BarsStackedGrouped, Scatter, Areas, Bubble, Coords, Target, Multival, Notifications, Combination, Scroll, EqualSpacing, Tracker, MultiAxis, MultiAxisInteractive, CandleStick, Cubiclines, itemsConsumed, CandleStickInteractive, CustomUnits, Trendline
 }
 
 class GraphSelectorTableViewController: UITableViewController {
@@ -18,24 +18,25 @@ class GraphSelectorTableViewController: UITableViewController {
     var detailViewController: GraphDetailViewController? = nil
     
     var analytics: [(GraphType, String)] = [
-        (.HelloWorld, "Hello World"),
-        (.Bars, "Bars"),
+        (.itemsConsumed, "Consumption of items per category"),
+        (.CustomUnits, "Fill Level per day"),
+        (.Areas, "Expired Items per month"),
+        (.BarsPlusMinus, "Friend Ranking by Landfill Contribution"),
+        (.Coords, "Weight of trash thrown out"),
         (.StackedBars, "Stacked bars"),
-        (.BarsPlusMinus, "+/- bars with dynamic gradient"),
+        (.Bubble, "Quantity of items added per month and expiration date")
+        
+        /*
+        (.Bars, "Bars"),
         (.GroupedBars, "Grouped bars"),
         (.BarsStackedGrouped, "Stacked, grouped bars"),
         (.Combination, "+/- bars and line"),
         (.Scatter, "Scatter"),
         (.Notifications, "Notifications (interactive)"),
         (.Target, "Target point animation"),
-        (.Areas, "Areas, lines, circles (interactive)"),
-        (.Bubble, "Bubble, gradient bar mapping"),
-        (.NotNumeric, "Not numeric values"),
         (.Scroll, "Multiline, Scroll"),
-        (.Coords, "Show touch coords (interactive)"),
         (.Tracker, "Track touch (interactive)"),
         (.EqualSpacing, "Fixed axis spacing"),
-        (.CustomUnits, "Custom units, rotated labels"),
         (.Multival, "Multiple axis labels"),
         (.MultiAxis, "Multiple axes"),
         (.MultiAxisInteractive, "Multiple axes (interactive)"),
@@ -43,8 +44,8 @@ class GraphSelectorTableViewController: UITableViewController {
         (.CandleStickInteractive, "Candlestick (interactive)"),
         (.Cubiclines, "Cubic lines"),
         (.Trendline, "Trendline")
+        */
     ]
-
     
     override func viewDidLoad() {
         super.viewDidLoad()

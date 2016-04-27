@@ -103,7 +103,7 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
             
             if !snapshot.exists(){
                 let inventoryItem = InventoryItem(title: title, UPC: code, quantity: 1, expired: false, thrownOut:0, key: "")
-                print("Saving", 1, " item with upc: ", code)
+                //print("Saving", 1, " item with upc: ", code)
                 inventoryItemRef.setValue(inventoryItem.toAnyObject())
             }
             
@@ -112,7 +112,7 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
                 quantity = quantity! + 1
                 let thrownOut = (snapshot.value["thrownOut"]) as? Int
                 let inventoryItem = InventoryItem(title: title, UPC: code, quantity: quantity!, expired: false, thrownOut: thrownOut!, key: "")
-                print("Saving", String(quantity), " item with upc: ", code)
+                //print("Saving", String(quantity), " item with upc: ", code)
                 inventoryItemRef.setValue(inventoryItem.toAnyObject())
                 
             }

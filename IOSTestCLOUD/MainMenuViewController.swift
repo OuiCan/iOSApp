@@ -20,7 +20,7 @@ class MainMenuViewController: UIViewController {
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var fillLabel: UILabel!
     @IBOutlet weak var inventoryCountText: UILabel!
-
+    @IBOutlet weak var ammoniaContentText: UILabel!
     
     
     override func viewDidLoad() {
@@ -33,6 +33,7 @@ class MainMenuViewController: UIViewController {
         retrieveFillLevel()
         retrieveWeight()
         setAndRetriveInventoryCount()
+        retrieveAmmoniaContent()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -103,7 +104,7 @@ class MainMenuViewController: UIViewController {
             }
             
             inventoryCountRef.setValue(itemCount)
-            self.inventoryCountText.text = String(itemCount)
+            self.inventoryCountText.text = String(itemCount) + " Items"
         })
     }
 
@@ -135,5 +136,20 @@ class MainMenuViewController: UIViewController {
                 print(error.description)
         })
     }
+    
+    
+    func retrieveAmmoniaContent() {
+        userRef.observeEventType(.Value, withBlock: { snapshot in
+            
+            let ammoniaContent = snapshot.value.objectForKey("ammoniaContent") as? String
+            
+            if (self.ammoniaContentText != nil){
+                self.ammoniaContentText.text = ammoniaContent! + " PPM"
+            }
+            }, withCancelBlock: { error in
+                print(error.description)
+        })
+    }
+    
     
 }
