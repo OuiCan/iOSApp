@@ -107,9 +107,9 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
         
         let upcRef = inventoryRef.childByAppendingPath(code)
         
-        upcRef.observeEventType(.Value, withBlock: {snap in
+        upcRef.observeSingleEventOfType(.Value, withBlock: {snapshot in
             
-            if snap.value is NSNull{
+            if !snapshot.exists(){
                 // Quantity = 1
                 //Never thrownOut
                 let inventoryItem = InventoryItem(title: title, UPC: code, quantity: 1, expired: false, thrownOut:0, key: "")
@@ -119,15 +119,15 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
             else{
                 //Quantity = Quantity + 1
                 //Maintain thrownOut
-                var quantity = ((snap.value["quantity"]) as! Int)
-                print(quantity)
+                var quantity = ((snapshot.value["quantity"]) as! Int)
                 quantity = quantity + 1
-                let thrownOut = (snap.value["thrownOut"]) as! Int
+                let thrownOut = (snapshot.value["thrownOut"]) as! Int
                 let inventoryItem = InventoryItem(title: title, UPC: code, quantity: quantity, expired: false, thrownOut: thrownOut, key: "")
                 inventoryItemRef.setValue(inventoryItem.toAnyObject())
             }
         })
         
+        /*
         //Update Inventory count
         let inventoryCountRef = userRef.childByAppendingPath("inventorySize")
         
@@ -135,6 +135,9 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
             inventoryCountRef.setValue(self.inventory.count)
         })
         
+        print("Inventory count is now ", inventory.count)
+        */
+
     }
     
     /**************** Populate table ***********/
