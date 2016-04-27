@@ -166,7 +166,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Uf5-VY-cnv" kind="show" id="15p-2P-Wrt"/>
+                                    <segue destination="SRS-ZH-Tqq" kind="show" id="Kwd-7E-FRJ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -203,24 +203,24 @@
             </objects>
             <point key="canvasLocation" x="2355" y="418"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="mbZ-mV-0wT">
+        <!--Graph Detail View Controller-->
+        <scene sceneID="37m-OT-awJ">
             <objects>
-                <viewController id="Uf5-VY-cnv" sceneMemberID="viewController">
+                <viewController id="7g8-tb-IZN" customClass="GraphDetailViewController" customModule="IOSTestCLOUD" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="3li-zX-y8o"/>
-                        <viewControllerLayoutGuide type="bottom" id="cXo-GC-Nvc"/>
+                        <viewControllerLayoutGuide type="top" id="zGt-AH-qGA"/>
+                        <viewControllerLayoutGuide type="bottom" id="z1M-gi-vFa"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="610-Dm-mPI">
+                    <view key="view" contentMode="scaleToFill" id="c5X-hJ-cct">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rer-93-dfy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ddr-Wf-HBX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2355" y="1290"/>
+            <point key="canvasLocation" x="2558" y="1329"/>
         </scene>
         <!--Inventory-->
         <scene sceneID="CKQ-IR-OP1">
@@ -410,6 +410,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JX5-lO-QsX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1725" y="418"/>
+        </scene>
+        <!--Graph Selector Table View Controller-->
+        <scene sceneID="zMr-S8-2i8">
+            <objects>
+                <tableViewController id="SRS-ZH-Tqq" customClass="GraphSelectorTableViewController" customModule="IOSTestCLOUD" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="MTo-f2-oc6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="OBb-u6-qm0">
+                                <rect key="frame" x="0.0" y="92" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OBb-u6-qm0" id="BHh-be-O3P">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="7g8-tb-IZN" kind="show" identifier="showDetail" id="QJj-jk-jTe"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="SRS-ZH-Tqq" id="Rlq-Ic-a9d"/>
+                            <outlet property="delegate" destination="SRS-ZH-Tqq" id="nlP-vz-22a"/>
+                        </connections>
+                    </tableView>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ceA-aV-5ME" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1898" y="1329"/>
         </scene>
     </scenes>
     <resources>
