@@ -157,10 +157,9 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
     func decrementQuantity(inventoryItemRef: Firebase!) {
         
         
-        inventoryItemRef.observeEventType(.Value, withBlock: { snapshot in
+        inventoryItemRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             
-            //  DOUBLE CHECK THIS
-            let inventoryItem = InventoryItem(snapshot: snapshot.value as! FDataSnapshot)
+            let inventoryItem = InventoryItem(snapshot: snapshot)
             
             //Update quantity - 1 and thrownOut++
             
@@ -179,7 +178,6 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
                 newThrownOut = thrownOut + 1
             }
         
-            //let newInventoryItem = InventoryItem(title: title, UPC: code, quantity: newQuantity, expired: false, thrownOut: newThrownOut, key: "")
             let inventoryItemQuantityRef = inventoryItemRef.childByAppendingPath("quantity")
             inventoryItemQuantityRef.setValue(newQuantity)
             
@@ -207,7 +205,7 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
                 
             let inventoryItemUPC = inventoryItem.UPC
             let title = inventoryItem.title
-                
+            
             if  (discardedItemUPC == inventoryItemUPC) || ((title.lowercaseString.rangeOfString(speech)) != nil) {
                 matches.append(inventoryItemUPC)
             }
@@ -235,9 +233,8 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
                 let timeStamp = discardedItem.timeStamp
                 
                 let discardedItemRef = discardedListRef.childByAppendingPath(timeStamp)
-                
-                let resolvedStatus = discardedItemRef.valueForKey("Resolved") as? String
-                let resolvedStatusRef = discardedItemRef.childByAppendingPath("Resolved")
+                let resolvedStatusRef = discardedItemRef.childByAppendingPath("resolved")
+                let resolvedStatus = discardedItem.resolved
 
                 if (resolvedStatus == "no") {
                     
@@ -273,7 +270,7 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
                         let message = "Speech = " + speech + "   \nUPC = " + discardedItemUPC
                         
                         ///CONFLICT
-                        let alertController = UIAlertController(title: String(countMatches) + " inventory items match.", message:
+                        let alertController = UIAlertController(title: String(countMatches) + " inventory items match.\n Please resolve conflict manually.", message:
                             message, preferredStyle: UIAlertControllerStyle.Alert)
                         alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
                         
