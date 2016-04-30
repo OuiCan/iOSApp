@@ -79,7 +79,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 if error == nil {
                 self.ref.authUser(emailField.text, password: passwordField.text,
                      withCompletionBlock: { (error, auth) -> Void in
-                                // 4
                         })
                 }
             }

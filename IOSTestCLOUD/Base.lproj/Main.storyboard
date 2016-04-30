@@ -111,22 +111,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DashboardOuican2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="ap6-Ix-yux">
                                 <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFi-ee-Bvm">
-                                <rect key="frame" x="126" y="665" width="167" height="75"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="167" id="Ifi-OK-73A"/>
-                                    <constraint firstAttribute="height" constant="75" id="XmG-S7-kY9"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Import Receipt">
-                                    <color key="titleColor" red="0.91958310586027858" green="1" blue="0.89476539597547977" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="n4p-K4-8QP" kind="show" id="m2D-Lv-zzU"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25 Kg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFe-av-HzU">
-                                <rect key="frame" x="143" y="289" width="132" height="58"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="25 Kg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFe-av-HzU">
+                                <rect key="frame" x="120" y="289" width="174" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="132" id="sQk-jk-H1W"/>
                                 </constraints>
@@ -170,6 +156,20 @@
                                 </constraints>
                                 <connections>
                                     <segue destination="SRS-ZH-Tqq" kind="show" id="Kwd-7E-FRJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFi-ee-Bvm">
+                                <rect key="frame" x="112" y="669" width="192" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="167" id="Ifi-OK-73A"/>
+                                    <constraint firstAttribute="height" constant="75" id="XmG-S7-kY9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Manage Inventory">
+                                    <color key="titleColor" red="0.91958310586027858" green="1" blue="0.89476539597547977" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="n4p-K4-8QP" kind="show" id="m2D-Lv-zzU"/>
                                 </connections>
                             </button>
                         </subviews>

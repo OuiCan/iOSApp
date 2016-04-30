@@ -34,6 +34,12 @@ class MainMenuViewController: UIViewController {
         retrieveWeight()
         setAndRetriveInventoryCount()
         retrieveAmmoniaContent()
+        
+        //Update Inventory
+        FirebaseInterface.retrieveInventory()
+        
+        //Discard items from discard list as soon as they are created
+        FirebaseInterface.throwItemsFromDiscardList(self)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -46,7 +52,6 @@ class MainMenuViewController: UIViewController {
                 print(self.user.uid)
             }
         }
-
 
     }
     
@@ -144,7 +149,7 @@ class MainMenuViewController: UIViewController {
             if let ammoniaContent = snapshot.value.objectForKey("ammoniaContent") as? String {
             
                 if (self.ammoniaContentText != nil){
-                    self.ammoniaContentText.text = (ammoniaContent) + " PPM"
+                    self.ammoniaContentText.text = (ammoniaContent)
                 }
             }
             

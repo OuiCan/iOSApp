@@ -9,22 +9,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IOSTestCLOUD/ImportInventoryTableViewController.swift"
-            timestampString = "483684954.686188"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "ImportInventoryTableViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "IOSTestCLOUD/GraphSelectorTableViewController.swift"
             timestampString = "483490549.860664"
             startingColumnNumber = "9223372036854775807"
@@ -57,13 +41,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IOSTestCLOUD/ImportInventoryTableViewController.swift"
-            timestampString = "483689085.402177"
+            filePath = "IOSTestCLOUD/FirebaseInterface.swift"
+            timestampString = "483737061.149995"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
-            landmarkName = "decrementQuantity(_:)"
+            startingLineNumber = "256"
+            endingLineNumber = "256"
+            landmarkName = "throwItemsFromDiscardList(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,60 +58,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IOSTestCLOUD/ImportInventoryTableViewController.swift"
-            timestampString = "483691086.445619"
+            timestampString = "483740376.920992"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "228"
-            endingLineNumber = "228"
-            landmarkName = "throwItemsFromDiscardList()"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "jsonParser(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IOSTestCLOUD/ImportInventoryTableViewController.swift"
-            timestampString = "483691086.445619"
+            timestampString = "483741074.548504"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "244"
-            endingLineNumber = "244"
-            landmarkName = "throwItemsFromDiscardList()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IOSTestCLOUD/ImportInventoryTableViewController.swift"
-            timestampString = "483691086.445619"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "241"
-            endingLineNumber = "241"
-            landmarkName = "throwItemsFromDiscardList()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IOSTestCLOUD/ImportInventoryTableViewController.swift"
-            timestampString = "483690918.894867"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
-            landmarkName = "findConflicts(_:)"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "jsonParser(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
