@@ -141,11 +141,13 @@ class MainMenuViewController: UIViewController {
     func retrieveAmmoniaContent() {
         userRef.observeEventType(.Value, withBlock: { snapshot in
             
-            let ammoniaContent = snapshot.value.objectForKey("ammoniaContent") as? String
+            if let ammoniaContent = snapshot.value.objectForKey("ammoniaContent") as? String {
             
-            if (self.ammoniaContentText != nil){
-                self.ammoniaContentText.text = ammoniaContent! + " PPM"
+                if (self.ammoniaContentText != nil){
+                    self.ammoniaContentText.text = (ammoniaContent) + " PPM"
+                }
             }
+            
             }, withCancelBlock: { error in
                 print(error.description)
         })

@@ -13,6 +13,7 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
     
     var json: Array<String>!
     var inventory = [InventoryItem]()
+    var discardList = [DiscardedItem]()
     var user: User!
     var activityIndicator:UIActivityIndicatorView!
 
@@ -36,6 +37,9 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
         //Pull Existing Inventory from FireBase Here
         retrieveInventory()
         InventoryList.reloadData()
+        
+        //Discard items from discard list
+        throwItemsFromDiscardList()
         
     }
     
@@ -120,6 +124,165 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
 
     }
     
+    /*
+        Pull discard list from server. 
+        Only add to local discarded list if not status is not resolved ("no")
+    */
+    
+    func retrieveDiscardList(){
+        
+        let discardedRef = self.userRef.childByAppendingPath("Discard Pending")
+         discardedRef.observeEventType(.Value, withBlock: { snapshot in
+            
+            var newDiscardedItems = [DiscardedItem]()
+            
+            for item in snapshot.children {
+                
+                let discardedItem = DiscardedItem(snapshot: item as! FDataSnapshot)
+                
+                let resolvedStatus = discardedItem.resolved
+                
+                if resolvedStatus == "no" {
+                    newDiscardedItems.append(discardedItem)
+                }
+            }
+            self.discardList = newDiscardedItems
+        })
+    }
+    
+    /*
+        Decrease quantity and increase thrownOut properties on the server
+    */
+    
+    func decrementQuantity(inventoryItemRef: Firebase!) {
+        
+        
+        inventoryItemRef.observeEventType(.Value, withBlock: { snapshot in
+            
+            //  DOUBLE CHECK THIS
+            let inventoryItem = InventoryItem(snapshot: snapshot.value as! FDataSnapshot)
+            
+            //Update quantity - 1 and thrownOut++
+            
+            let quantity = inventoryItem.quantity
+            let thrownOut = inventoryItem.thrownOut
+            
+            var newQuantity = quantity
+            var newThrownOut = thrownOut
+        
+            if quantity <= 0 {
+                newQuantity = 0
+            }
+        
+            else {
+                newQuantity = quantity - 1
+                newThrownOut = thrownOut + 1
+            }
+        
+            //let newInventoryItem = InventoryItem(title: title, UPC: code, quantity: newQuantity, expired: false, thrownOut: newThrownOut, key: "")
+            let inventoryItemQuantityRef = inventoryItemRef.childByAppendingPath("quantity")
+            inventoryItemQuantityRef.setValue(newQuantity)
+            
+            let inventoryItemThrownOutRef = inventoryItemRef.childByAppendingPath("thrownOut")
+            inventoryItemThrownOutRef.setValue(newThrownOut)
+            
+        })
+    }
+    
+    
+    
+    /*
+        Find the items that the discarded item matches with in the inventory List
+    
+        //Should this loop through a server query?
+    */
+    
+    func findConflicts(discardedItem: DiscardedItem) -> [String]{
+        
+        let discardedItemUPC = discardedItem.UPC
+        let speech = discardedItem.speech
+        var matches = [String]()
+        
+        for inventoryItem in inventory {
+                
+            let inventoryItemUPC = inventoryItem.UPC
+            let title = inventoryItem.title
+                
+            if  (discardedItemUPC == inventoryItemUPC) || ((title.lowercaseString.rangeOfString(speech)) != nil) {
+                matches.append(inventoryItemUPC)
+            }
+        }
+        
+        return matches
+    }
+    
+    /*
+        1-
+        2- Count how many matches of a single discarded item exist with an inventory item, either with UPC or speech
+        3- Set resolved status in discarded item based on result
+    */
+    
+    func throwItemsFromDiscardList(){
+        
+        let discardedListRef = userRef.childByAppendingPath("Discard Pending")
+        discardedListRef.observeEventType(.Value, withBlock: { snapshot in
+
+            for item in snapshot.children {
+
+                //item could be nil?
+                let discardedItem = DiscardedItem(snapshot: item as! FDataSnapshot)
+                
+                let timeStamp = discardedItem.timeStamp
+                
+                let discardedItemRef = discardedListRef.childByAppendingPath(timeStamp)
+                
+                let resolvedStatus = discardedItemRef.valueForKey("Resolved") as? String
+                let resolvedStatusRef = discardedItemRef.childByAppendingPath("Resolved")
+
+                if (resolvedStatus == "no") {
+                    
+                    let foundMatches = self.findConflicts(discardedItem)
+                    let countMatches = foundMatches.count
+                    
+                    if countMatches == 0 {
+                        resolvedStatusRef.setValue("not found")
+                        
+                        let speech = discardedItem.speech
+                        let discardedItemUPC = discardedItem.UPC
+                        let message = "Speech = " + speech + "\nUPC = " + discardedItemUPC
+                        
+                        let alertController = UIAlertController(title: "Thrown trash not found in inventory. Please manually remove item.", message:
+                            message, preferredStyle: UIAlertControllerStyle.Alert)
+                        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                        
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                    }
+                    
+                    else if countMatches == 1 {
+                        resolvedStatusRef.setValue("resolved")
+                    
+                        let matchedItemUPC = foundMatches[0]
+                        let inventoryItemRef = self.userRef.childByAppendingPath("inventory/" + matchedItemUPC)
+                        self.decrementQuantity(inventoryItemRef)
+                    }
+            
+                    else {
+                        resolvedStatusRef.setValue("conflict")
+                        let speech = discardedItem.speech
+                        let discardedItemUPC = discardedItem.UPC
+                        let message = "Speech = " + speech + "   \nUPC = " + discardedItemUPC
+                        
+                        ///CONFLICT
+                        let alertController = UIAlertController(title: String(countMatches) + " inventory items match.", message:
+                            message, preferredStyle: UIAlertControllerStyle.Alert)
+                        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                        
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                    }
+                }
+            }
+        })
+    }
     
     /**************** Populate table ***********/
     
@@ -128,8 +291,7 @@ class ImportInventoryTableViewController: UIViewController, UINavigationControll
 
         let inventoryItem = inventory[indexPath.row]
         cell.textLabel?.text = inventoryItem.title
-        cell.detailTextLabel?.text = inventoryItem.UPC
-        
+        cell.detailTextLabel?.text = inventoryItem.UPC + "    Quantity: " + String(inventoryItem.quantity) + "    Thrown Out: " + String(inventoryItem.thrownOut)
         return cell
     }
     

@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IOSTestCLOUD/ImportInventoryTableViewController.swift"
-            timestampString = "483475558.125347"
+            timestampString = "483517012.091429"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "saveItemToInventory(_:code:)"
-            landmarkType = "5">
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "ImportInventoryTableViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

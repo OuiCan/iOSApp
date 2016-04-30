@@ -125,6 +125,7 @@
 		192CC3E31CD135E500EF4AB2 /* InfoBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192CC39D1CD135E400EF4AB2 /* InfoBubble.swift */; };
 		192CC3E41CD135E500EF4AB2 /* StraightLinePathGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192CC39E1CD135E400EF4AB2 /* StraightLinePathGenerator.swift */; };
 		192CC3E71CD1797B00EF4AB2 /* DashboardOuican2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 192CC3E61CD1797B00EF4AB2 /* DashboardOuican2.jpg */; };
+		192CC3E91CD1C49300EF4AB2 /* DiscardedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192CC3E81CD1C49300EF4AB2 /* DiscardedItem.swift */; };
 		1932D0431CC02B8D00278164 /* tesseractViewOuican.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1932D0411CC02B8D00278164 /* tesseractViewOuican.jpg */; };
 		1932D0441CC02B8D00278164 /* tableViewListOuican.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1932D0421CC02B8D00278164 /* tableViewListOuican.jpg */; };
 		194727941CBB6CFB00FB0370 /* KDCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194727931CBB6CFB00FB0370 /* KDCircularProgress.swift */; };
@@ -285,6 +286,7 @@
 		192CC39D1CD135E400EF4AB2 /* InfoBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoBubble.swift; sourceTree = "<group>"; };
 		192CC39E1CD135E400EF4AB2 /* StraightLinePathGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StraightLinePathGenerator.swift; sourceTree = "<group>"; };
 		192CC3E61CD1797B00EF4AB2 /* DashboardOuican2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DashboardOuican2.jpg; sourceTree = "<group>"; };
+		192CC3E81CD1C49300EF4AB2 /* DiscardedItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscardedItem.swift; sourceTree = "<group>"; };
 		1932D0411CC02B8D00278164 /* tesseractViewOuican.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tesseractViewOuican.jpg; sourceTree = "<group>"; };
 		1932D0421CC02B8D00278164 /* tableViewListOuican.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tableViewListOuican.jpg; sourceTree = "<group>"; };
 		194727931CBB6CFB00FB0370 /* KDCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KDCircularProgress.swift; path = ../KDCircularProgress.swift; sourceTree = "<group>"; };
@@ -614,6 +616,7 @@
 				194727931CBB6CFB00FB0370 /* KDCircularProgress.swift */,
 				19C9B6801CA95C3F00531CAD /* InventoryItem.swift */,
 				19C9B6821CA95C5500531CAD /* User.swift */,
+				192CC3E81CD1C49300EF4AB2 /* DiscardedItem.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -961,6 +964,7 @@
 				192CC3461CD135D100EF4AB2 /* NotNumericExample.swift in Sources */,
 				192CC3E21CD135E500EF4AB2 /* HandlingView.swift in Sources */,
 				192CC3CD1CD135E500EF4AB2 /* ChartPointsLineLayer.swift in Sources */,
+				192CC3E91CD1C49300EF4AB2 /* DiscardedItem.swift in Sources */,
 				192CC33C1CD135D100EF4AB2 /* Env.swift in Sources */,
 				192CC34A1CD135D100EF4AB2 /* TargetExample.swift in Sources */,
 				192CC3A91CD135E500EF4AB2 /* ChartAxisYLowLayerDefault.swift in Sources */,

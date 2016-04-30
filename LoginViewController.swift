@@ -72,7 +72,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 
                 let emailField = alert.textFields![0]
                 let passwordField = alert.textFields![1]
-                let ouicanIDField = alert.textFields![2]
+                //let ouicanIDField = alert.textFields![2]
     
                 self.ref.createUser(emailField.text, password: passwordField.text) { (error: NSError!) in
     
